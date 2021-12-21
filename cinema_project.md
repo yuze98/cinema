@@ -89,4 +89,4 @@
                 db.collection('reservation').set({
                 matrix:[0000111000]
                 })
-            }
+                }
