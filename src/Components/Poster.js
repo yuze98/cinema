@@ -1,16 +1,15 @@
 import React from "react";
-export default function Poster() {
-  const title = "SpiderMan: No Way Home";
-  const image =
-    "https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg";
-  return (
+export default function Poster(props) {
+  const title = props.titlee;
+  const image = props.imagee;
+    return (
     <div style={{padding: 20}}>
       <div style={{textAlign:'center'}}>
         <h2>{title}</h2>
       </div>
-      <div style={{margin:'auto',padding:10}}>
+      <div style={{margin: 'auto'}}>
         <a href="/Reservation">
-          <img style={{ width: 270, height: 400 }} src={image} />
+          <img style={{ width: 270, height: 400, paddingLeft: 50}} src={image} />
         </a>
       </div>
     </div>
