@@ -6,6 +6,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Home from './Screens/Home';
+import Login from './Screens/Login'
+import Reservation from './Screens/Reservation'
 
 export default function App() {
   return (
@@ -17,10 +20,10 @@ export default function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/Reservation">Reservation</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/Login">Login</Link>
             </li>
           </ul>
         </nav>
@@ -28,9 +31,9 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
-          <Route path="/about" element = {<About />}>
+          <Route path="/Reservation" element = {<Reservation />}>
             </Route>
-          <Route path="/users" element = {<Users />}>
+          <Route path="/Login" element = {<Login />}>
           </Route>
           <Route path="/"
             element = {<Home />}>
@@ -41,17 +44,9 @@ export default function App() {
   );
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
 
-function About() {
-  return <h2>About</h2>;
-}
 
-function Users() {
-  return <h2>Users</h2>;
-}
+
 //template
 /* import logo from './logo.svg';
 import './App.css';
