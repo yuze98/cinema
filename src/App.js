@@ -3,8 +3,7 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Home from './Screens/Home';
 import Login from './Screens/Login'
@@ -14,21 +13,7 @@ export default function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/Reservation">Reservation</Link>
-            </li>
-            <li>
-              <Link to="/Login">Login</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
+        {/* A <Routes> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
           <Route path="/Reservation" element = {<Reservation />}>

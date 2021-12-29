@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import PosterModal from "./PosterModal";
 import { styles } from "../Styles/Styles";
-export default function Poster(props) {
-  const title = props.title;
-  const image = props.image;
+import AddMovieModal from "./AddMovieModal";
+export default function AddMovie(props) {
+  const title = 'Add Movie';
+  const image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlloYJnItqGKx9gXJQi73Cp9oBhRGROzurmg&usqp=CAU';
   const [isShown, setisShown] = useState(false);
   return (
-    <div style={{ padding: 50 }}>
+    <div style={{ padding: 50 ,}}>
       <div>
-      <PosterModal isShown={isShown} title={props.title} image={props.image}/>
+      <AddMovieModal isShown={isShown}/>
       </div>
       <div style={{ textAlign: "center" }}>
         <h2>{title}</h2>
