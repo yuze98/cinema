@@ -39,9 +39,8 @@ export const styles = {
   },
   title: { 
     fontFamily: "Roboto",
-     fontSize: 52 ,
+     fontSize: 52,
      color: '#FF5959',
-     textAlign:'center'
-
+     textAlign:'center',
     },
 };

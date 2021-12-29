@@ -6,7 +6,7 @@ export default function Poster(props) {
   const image = props.image;
   const [isShown, setisShown] = useState(false);
   return (
-    <div style={{ padding: 20 }}>
+    <div style={{ padding: 30 }}>
       <div>
       <PosterModal isShown={isShown} title={props.title} image={props.image}/>
       </div>
