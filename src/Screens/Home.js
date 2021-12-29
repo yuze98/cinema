@@ -79,6 +79,9 @@ const styles = {
     textAlign: "center",
     backgroundColor: "#ff0066",
     fontSize: 25,
+    color:'#ffffff',
     cursor: "pointer",
+    width: 250,
+    height: 60
   },
 };

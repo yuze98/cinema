@@ -43,4 +43,9 @@ export const styles = {
      color: '#FF5959',
      textAlign:'center',
     },
+  details:{
+    padding:50,
+    color:'FF5959',
+    fontSize:20,
+  }
 };
