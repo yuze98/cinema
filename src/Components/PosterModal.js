@@ -13,7 +13,7 @@ function PosterModal(props) {
   const Screeing_Room = "10C";
 
   return (
-    <Modal isOpen={shown} animation="fade">
+    <Modal isOpen={shown} animation="fade" >
       <div style={styles.topContainer}>
         <div
           style={{

@@ -1,6 +1,8 @@
 import { Modal } from "react-onsenui";
 import { styles } from "../Styles/Styles";
 import { useEffect, useState } from "react";
+import Poster from "./Poster";
+
 function AddMovieModal(props) {
   const [shown, setShown] = useState(props.isShown);
   useEffect(() => {
@@ -12,11 +14,11 @@ function AddMovieModal(props) {
   const [starts, setStarts] = useState("");
   const [ends, setEnds] = useState("");
   const [screen, setScreen] = useState("");
-  const [Poster, setPoster] = useState("");
+  const [poster, setPoster] = useState("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8af5e086459421.5d9a79cc7e3d5.jpg");
   const [title, setTitle] = useState("");
 
-  function handlesubmit(event){
-    alert('Movie Added!',date)
+  function handlesubmit(event) {
+    alert("Movie Added!", date);
     //event.preventDefault();
   }
 
@@ -29,9 +31,11 @@ function AddMovieModal(props) {
             background: "black",
             opacity: 0.8,
             margin: 50,
+            flexDirection:'row',
+            display:'flex'
           }}
         >
-          <form onsubmit={()=>handlesubmit()}>
+          <form onSubmit={() => handlesubmit()} style={{paddingLeft:"30%"}}>
             <ul style={{ "list-style-type": "none" }}>
               <li
                 style={
@@ -114,22 +118,19 @@ function AddMovieModal(props) {
               <input
                 type="text"
                 name="Poster"
-                value={Poster}
+                value={poster}
                 style={styles.AddMovieBox}
                 onChange={(event) => setPoster(event.target.value)}
               />
               <br />
               <br />
               <br />
-              <input
-                type="submit"
-                value="Submit"
-                style={styles.button}
-              />
-              <div style={{ marginTop: 50 }}>
+              <div style={{ flexDirection: "row" }}>
+                <input type="submit" value="Submit" style={styles.button} />
+              
                 <button
                   type="button"
-                  style={styles.modalbtn}
+                  style={styles.button1}
                   onClick={() => {
                     setShown(false);
                   }}
@@ -139,7 +140,10 @@ function AddMovieModal(props) {
               </div>
             </ul>
           </form>
+          
+          <Poster title={title} image={poster} style={{marginBottom: '50%',}}/>
         </div>
+        
       </div>
     </Modal>
   );

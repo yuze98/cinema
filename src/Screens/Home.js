@@ -6,7 +6,7 @@ import AddMovie from "../Components/AddMovie";
 
 export default function Home() {
 
-  const user = 'manager'
+  //const user = 'manager'
 
   return (
     <div
@@ -68,6 +68,7 @@ export default function Home() {
         />
       </div>
     </div>
+    
   );
 }
 

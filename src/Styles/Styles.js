@@ -24,6 +24,22 @@ export const styles = {
     width: 250,
     height: 60,
   },
+  button1: {
+    display: "inline-block",
+    padding: 10,
+    margin: 30,
+    border: 0.1,
+    borderRadius: 12,
+    fontFamily: "Roboto",
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#ff0066",
+    fontSize: 25,
+    color: "#ffffff",
+    cursor: "pointer",
+    width: 250,
+    height: 60,
+  },
   poster_button: {
     color: "white",
     backgroundColor: "transparent",
@@ -54,14 +70,14 @@ export const styles = {
   details_title: {
     color: "white",
     fontSize: 20,
-    paddingRight:100,
-    fontWeight:'bold'
+    paddingRight: 100,
+    fontWeight: "bold",
   },
-  AddMovieBox:{
-    width:200,
-    height:30,
-    fontSize:20,
-    borderRadius:10,
-    borderColor:'#FF5959'
-  }
+  AddMovieBox: {
+    width: 200,
+    height: 30,
+    fontSize: 20,
+    borderRadius: 10,
+    borderColor: "#FF5959",
+  },
 };

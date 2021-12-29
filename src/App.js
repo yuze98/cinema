@@ -8,11 +8,12 @@ import {
 import Home from './Screens/Home';
 import Login from './Screens/Login'
 import Reservation from './Screens/Reservation'
+import '../src/App.css'
 
 export default function App() {
   return (
     <Router>
-      <div>
+      <div >
         {/* A <Routes> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
