@@ -44,13 +44,14 @@ export const styles = {
     textAlign: "center",
   },
   details: {
-    padding: 50,
+    padding: 30,
     color: "#FF5959",
-    fontSize: 20,
+    fontSize: 15,
   },
   details_title: {
     color: "white",
-    fontSize: 30,
+    fontSize: 20,
     paddingRight:100,
+    fontWeight:'bold'
   },
 };

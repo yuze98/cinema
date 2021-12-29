@@ -17,14 +17,16 @@ function PosterModal(props) {
       <div style={styles.topContainer}>
         <div
           style={{
-            padding:150,
+            padding: 150,
             background: "black",
             opacity: 0.8,
             margin: 50,
           }}
         >
           <ul style={{ "list-style-type": "none" }}>
-            
+            <li style={styles.details_title,{fontSize:60,fontFamily:'Roboto',padding:20,fontWeight:'bold',color:'white'}}>Details</li>
+            <div style={{height:1,width:'100%',backgroundColor: 'white',margin:'auto'}}/>
+            <br/>
             <li style={styles.details_title}>Date:</li>
             <li style={styles.details}>{date}</li>
             <li style={styles.details_title}>Starts: </li>
