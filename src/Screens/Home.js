@@ -12,7 +12,14 @@ export default function Home() {
         backgroundColor: "#FFFFFF",
       }}
     >
-      <Toolbar style={{ height: 100, padding: 23, background: "#CFFFDC" ,opacity:0.85}}>
+      <Toolbar
+        style={{
+          height: 100,
+          padding: 23,
+          background: "#CFFFDC",
+          opacity: 0.85,
+        }}
+      >
         <div className="left">
           <a href="/">
             <button style={styles.button}>Home</button>
@@ -39,7 +46,7 @@ export default function Home() {
           Movie List
         </h1>
       </div>
-      <div style={{backgroundColor:'black',width:'100%',height:1}}/>
+      <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>
         <Poster
           title="SpiderMan: No Way Home"
@@ -79,9 +86,9 @@ const styles = {
     textAlign: "center",
     backgroundColor: "#ff0066",
     fontSize: 25,
-    color:'#ffffff',
+    color: "#ffffff",
     cursor: "pointer",
     width: 250,
-    height: 60
+    height: 60,
   },
 };

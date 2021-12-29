@@ -24,10 +24,15 @@ function PosterModal(props) {
           }}
         >
           <ul style={{ "list-style-type": "none" }}>
-            <li style={styles.details}>Date: {<br/>}{<br/>}{date}</li>
-            <li style={styles.details}>Starts: {<br/>}{<br/>}{start}</li>
-            <li style={styles.details}>Ends: {<br/>}{<br/>}{end}</li>
-            <li style={styles.details}>Screen: {<br/>}{<br/>}{Screeing_Room}</li>
+            
+            <li style={styles.details_title}>Date:</li>
+            <li style={styles.details}>{date}</li>
+            <li style={styles.details_title}>Starts: </li>
+            <li style={styles.details}>{start}</li>
+            <li style={styles.details_title}>Ends: </li>
+            <li style={styles.details}>{end}</li>
+            <li style={styles.details_title}>Screen: </li>
+            <li style={styles.details}>{Screeing_Room}</li>
           </ul>
         </div>
         <div style={{ paddingBottom: 300 }}>

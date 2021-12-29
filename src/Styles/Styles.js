@@ -37,15 +37,20 @@ export const styles = {
     width: 100,
     fontSize: 25,
   },
-  title: { 
+  title: {
     fontFamily: "Roboto",
-     fontSize: 52,
-     color: '#FF5959',
-     textAlign:'center',
-    },
-  details:{
-    padding:50,
-    color:'FF5959',
-    fontSize:20,
-  }
+    fontSize: 52,
+    color: "#FF5959",
+    textAlign: "center",
+  },
+  details: {
+    padding: 50,
+    color: "#FF5959",
+    fontSize: 20,
+  },
+  details_title: {
+    color: "white",
+    fontSize: 30,
+    paddingRight:100,
+  },
 };
