@@ -19,7 +19,10 @@ export const styles = {
     textAlign: "center",
     backgroundColor: "#ff0066",
     fontSize: 25,
+    color: "#ffffff",
     cursor: "pointer",
+    width: 250,
+    height: 60,
   },
   poster_button: {
     color: "white",
@@ -54,4 +57,11 @@ export const styles = {
     paddingRight:100,
     fontWeight:'bold'
   },
+  AddMovieBox:{
+    width:200,
+    height:30,
+    fontSize:20,
+    borderRadius:10,
+    borderColor:'#FF5959'
+  }
 };

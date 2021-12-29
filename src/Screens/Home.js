@@ -2,8 +2,12 @@ import React from "react";
 import "onsenui/css/onsen-css-components.css";
 import { Toolbar } from "react-onsenui";
 import Poster from "../Components/Poster";
+import AddMovie from "../Components/AddMovie";
 
 export default function Home() {
+
+  const user = 'manager'
+
   return (
     <div
       style={{
@@ -48,6 +52,8 @@ export default function Home() {
       </div>
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>
+        {/* we'll add Condition to show this if user is manager */}
+        <AddMovie />
         <Poster
           title="SpiderMan: No Way Home"
           image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"
