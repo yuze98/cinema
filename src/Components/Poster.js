@@ -18,7 +18,7 @@ export default function Poster(props) {
           type="button"
           style={styles.poster_button}
           onClick={() => {
-            setisShown(true);
+            setisShown(!isShown);
             console.log(isShown);
           }}
         >
