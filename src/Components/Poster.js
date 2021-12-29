@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PosterModal from "./PosterModal";
-
+import { styles } from "../Styles/Styles";
 export default function Poster(props) {
   const title = props.title;
   const image = props.image;
@@ -16,7 +16,7 @@ export default function Poster(props) {
       <div style={{ margin: "auto" }}>
         <button
           type="button"
-          style={{ color: "white", backgroundColor: "transparent",cursor:'pointer',borderColor:'transparent' }}
+          style={styles.poster_button}
           onClick={() => {
             setisShown(true);
             console.log(isShown);

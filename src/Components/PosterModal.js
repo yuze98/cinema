@@ -1,17 +1,28 @@
 import "../Styles/modal.css";
 import { Modal } from "react-onsenui";
-import { useState } from "react";
+import { styles } from "../Styles/Styles";
 
 function PosterModal(props) {
-  const [isShown, setisShown] = useState(props.isShown);
   return (
-    <Modal isOpen={isShown} animation="fade">
-      <h1>helllo modal here this is</h1>
-      <button type="button" onClick={() => {
-        setisShown(false)
-      }}></button>
-      {/* <a href="/Reservation">
-        </a> */}
+    <Modal isOpen={props.isShown} animation="fade">
+    <div style={{paddingBottom:300,}}>
+      <h1 style={styles.title}>{props.title}</h1>
+
+      <div>
+        <a href="/Reservation">
+          <img
+            alt="Movie Poster"
+            style={{ width: 370, height: 500,}}
+            src={props.image}
+          />
+        </a>
+      </div>
+      <div style={{marginTop: 100,}}>
+        <button type="button" style={styles.modalbtn} onClick={() => {}}>
+          <p1>Close</p1>
+        </button>
+      </div>
+      </div>
     </Modal>
   );
 }
