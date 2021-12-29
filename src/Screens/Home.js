@@ -3,7 +3,6 @@ import "onsenui/css/onsen-css-components.css";
 import { Toolbar } from "react-onsenui";
 import Poster from "../Components/Poster";
 
-
 export default function Home() {
 
   return (
@@ -16,7 +15,7 @@ export default function Home() {
     >
       <Toolbar style={{height:100,padding:23, background:'#CFFFDC'}}>
         <div className="left">
-          <a href="/Home">
+          <a href="/">
             <button style={styles.button}>Home</button>
           </a>
         </div>
@@ -29,9 +28,9 @@ export default function Home() {
       </Toolbar>
 
       <div style={styles.topContainer}>
-        <Poster titlee="SpiderMan: No Way Home" imagee="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"/>
-        <Poster titlee="Free Guy" imagee="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQEUMqXik1Ntuc2NTpCgbX2JENwlZD3kwDZa4nDm6TCkXVX9FvU"/>
-        <Poster titlee="Black Widow" imagee="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"/>
+        <Poster title="SpiderMan: No Way Home" image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"/>
+        <Poster title="Free Guy" image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQEUMqXik1Ntuc2NTpCgbX2JENwlZD3kwDZa4nDm6TCkXVX9FvU"/>
+        <Poster title="Black Widow" image="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"/>
       </div>
     </div>
   );
