@@ -9,6 +9,7 @@ import Home from './Screens/Home';
 import Login from './Screens/Login'
 import Reservation from './Screens/Reservation'
 import '../src/App.css'
+import TestRequests from "./Server/TestRequest";
 
 export default function App() {
   return (
@@ -22,7 +23,7 @@ export default function App() {
           <Route path="/Login" element = {<Login />}>
           </Route>
           <Route path="/"
-            element = {<Home />}>
+            element = {<TestRequests />}>
           </Route>
         </Routes>
       </div>

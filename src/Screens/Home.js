@@ -3,7 +3,7 @@ import "onsenui/css/onsen-css-components.css";
 import { Toolbar } from "react-onsenui";
 import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
-import GetMovie from "../Server/GetMovie";
+import TestRequests from "../Server/TestRequest";
 export default function Home() {
   //const user = 'manager'
 
@@ -24,7 +24,7 @@ export default function Home() {
         }}
       >
         <div className="left">
-          <button type='button' onClick={()=>{GetMovie();}}> 
+          <button type='button' onClick={()=>{TestRequests();}}> 
             <h1>
               HOLAAAAAAAAA
             </h1>
