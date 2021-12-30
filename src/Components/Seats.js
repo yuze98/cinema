@@ -11,15 +11,13 @@ export default function Seats(props) {
         }
     }
     function handleHoverLeave (e) {
-        console.log(e.target.id)
         if (e.target.style.background == 'yellow')
         {
             e.target.style.background = 'grey'
-        }
-            
+        }    
     }
+    
     function handleClick(e) {
-        console.log(e.target.style.background)
         if (e.target.style.background == 'rgb(255, 154, 60)')
         {
             e.target.style.background = 'grey'
@@ -28,12 +26,10 @@ export default function Seats(props) {
         }
         else
         {
-            e.target.style.background = '#ff9a3c'
             const newReserved = [...reserved]
             newReserved.push(e.target.id)
             setReserved(newReserved)
         }
-        console.log(reserved)
         
     }
     for (const seat of props.seatt)
@@ -44,7 +40,7 @@ export default function Seats(props) {
       }
       else 
       {
-          seats.push(<button id={count} key={count} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onClick={handleClick} style={styles.button}></button>)
+          seats.push(<button id={count} key={count} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave} onClick={handleClick} style={reserved.includes(''+count)? styles.selbutton:styles.button}></button>)
           
       }
       count++
@@ -53,10 +49,26 @@ export default function Seats(props) {
           seats.push(<br/>)
       }
     }
+    function handleClear (e) {
+        setReserved([])
+    }
+    function handleReserve (e) {
+        setReserved([])
+
+    }
+    console.log(reserved)
     return (
-        <div style={styles.bg}>
-            {seats}
+        <div>
+            <div style={styles.bg}>
+                {seats}
+                
+            </div>
+            <div style={styles.buttons}>
+            <button style={styles.otherbutton} onClick={handleReserve}>Reserve Seats!</button>
+            <button style={styles.otherbutton} onClick={handleClear}>Clear Selected Seats</button>
+            </div>
         </div>
+        
     )
 
 }
@@ -67,6 +79,11 @@ const styles = {
       height: 40,
       'background-color': 'grey',
       },
+      selbutton: {
+        width: 40,
+        height: 40,
+        'background-color': 'rgb(255, 154, 60)',
+        },
     clickedbutton: {
         width: 40,
         height: 40,
@@ -81,5 +98,22 @@ const styles = {
         position: 'absolute',
         top: '20%',
     },
+    buttons: {
+        position: 'absolute',
+        top: '100%',
+        left: '20%',
+      },
+      otherbutton: {
+        display: 'inline-block',
+        padding:10,
+        border:0.1,
+        borderRadius: 12,
+        fontFamily: 'Roboto',
+        fontWeight: 'bold',
+        textAlign:'center',
+        backgroundColor:'#ff0066',
+        fontSize: 25,
+        cursor: 'pointer'
+        }
     
   };

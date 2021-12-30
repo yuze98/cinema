@@ -6,9 +6,13 @@ export default function Reservation() {
         <div style={styles.bg}>
           <div style={styles.bg}>
             <Seats seatt={seatL}/>
+            
           </div>
           
         </div>
+        
+        
+        
       </div>
     )
   }
@@ -21,4 +25,5 @@ export default function Reservation() {
       left: '20%',
       'background-color': "#455d7a",
     },
+    
   };
