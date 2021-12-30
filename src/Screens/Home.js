@@ -3,9 +3,8 @@ import "onsenui/css/onsen-css-components.css";
 import { Toolbar } from "react-onsenui";
 import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
-
+import GetMovie from "../Server/GetMovie";
 export default function Home() {
-
   //const user = 'manager'
 
   return (
@@ -25,8 +24,17 @@ export default function Home() {
         }}
       >
         <div className="left">
+          <button type='button' onClick={()=>{GetMovie();}}> 
+            <h1>
+              HOLAAAAAAAAA
+            </h1>
+          </button>
           <a href="/">
-            <button style={styles.button}>Home</button>
+            <button
+              style={styles.button}
+            >
+              Home
+            </button>
           </a>
         </div>
         <div className="center" style={{ fontSize: 50, color: "#ff0066" }}>
@@ -68,7 +76,6 @@ export default function Home() {
         />
       </div>
     </div>
-    
   );
 }
 

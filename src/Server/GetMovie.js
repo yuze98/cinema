@@ -1,35 +1,36 @@
-import {useEffect,useState} from 'react';
-import MovieDB from '../api/MovieDB';
+import {useState} from 'react';
+// import MovieDB from '../api/MovieDB';
+import axios from 'axios';
+export default function GetMovie() {
 
-export default () => {
-
-    const[images,setImages] = useState([]);  //will make a function to retrieve all the results in the page as lists
-    const[message, setMessage] = useState(''); //this one for checking if there's an issue in server fetch
-
+    const [images,setImages] = useState([]);  //will make a function to retrieve all the results in the page as lists
+   const [message, setMessage] = useState(''); //this one for checking if there's an issue in server fetch
+   const [movieDet,setMovieDet] = useState();
     const getImages = async() =>{
-        
+      console.log('hereeeeeeeeeee')
         try
-        {
-            const response = await MovieDB.get('/configuration',{
+        { console.log('hereeeeeeeeeee')
+          const res = await axios.get('http://42c8-102-188-120-135.ngrok.io/movie/61c73770017b0cbec6c84133').then((resp)=>{
+            console.log(resp.data);
+            setMovieDet(resp.data)
+            console.log('hereeeeeeeeeee')
+          })
+            // const response = await MovieDB.get('/sign-up',{
 
-            params: {
-                api_key: "acea91d2bff1c53e6604e4985b6989e2",
-            }
-            });
-        setImages(response.data.images)
-         setMessage('')   
+            // params: {
+            //     api_key: "acea91d2bff1c53e6604e4985b6989e2",
+            // }
+            // });
+        //setImages(response.data.images)
+        setMessage('')   
         }
         catch(e)
         {
-            setMessage("Error happend while fetching data!")
+           setMessage("Error happend while fetching data!")
         }
     }
 
-    useEffect(() => {
-        getImages()//starts initally
-    },[])
-    
-    return [getImages,images,message]
+    return [movieDet]
 }
 
 /*import { useEffect, useState } from "react";
