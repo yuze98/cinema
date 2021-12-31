@@ -7,7 +7,7 @@ import GetMovie from "../Server/GetMovie";
 
 export default function Home(props) {
 
-  const [movDet,setMovDet] = useState( GetMovie('/61c73770017b0cbec6c84133'))  //returns the Movie Details array
+  const [movDet,setMovDet] = useState(GetMovie('/61c73770017b0cbec6c84133'))  //returns the Movie Details array
   const [here,setHere] = useState(true)  //returns the Movie Details array
 
   // React.useEffect(()=>{
