@@ -3,26 +3,47 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
 import Home from './Screens/Home';
 import Login from './Screens/Login'
+import Signup from './Screens/Signup'
 import Reservation from './Screens/Reservation'
-import '../src/App.css'
 
 
 export default function App() {
   return (
     <Router>
-      <div >
-        {/* A <Routes> looks through its children <Route>s and
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/Reservation">Reservation</Link>
+            </li>
+            <li>
+              <Link to="/Login">Login</Link>
+            </li>
+            <li>
+              <Link to="/Signup">Signup</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
-          <Route path="/Reservation" element = {<Reservation />}>
+          <Route exact path="/Reservation" element = {<Reservation />}>
             </Route>
-          <Route path="/Login" element = {<Login />}>
+          <Route exact path="/Login" element = {<Login />}>
           </Route>
-          <Route path="/"
+          <Route exact path="/Signup"
+            element = {<Signup />}>
+          </Route>
+          <Route exact path="/"
             element = {<Home />}>
           </Route>
         </Routes>
