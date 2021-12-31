@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "onsenui/css/onsen-css-components.css";
 import { Toolbar } from "react-onsenui";
 import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
-import TestRequests from "../Server/TestRequest";
-export default function Home() {
-  //const user = 'manager'
+import GetMovie from "../Server/GetMovie";
 
+export default function Home(props) {
+
+  const [movDet,setMovDet] = useState( GetMovie('/61c73770017b0cbec6c84133'))  //returns the Movie Details array
+  const [here,setHere] = useState(true)  //returns the Movie Details array
+
+  // React.useEffect(()=>{
+  //   async function getm(){
+  //     setMovDet(await GetMovie('/61c73770017b0cbec6c84133'));
+  //     setHere(false)
+  //   }
+  //   if (here)
+  //   {
+  //     getm()
+  //   }
+  //   console.log('here')
+  // },[]);
   return (
     <div
       style={{
@@ -24,11 +38,6 @@ export default function Home() {
         }}
       >
         <div className="left">
-          <button type='button' onClick={()=>{TestRequests();}}> 
-            <h1>
-              HOLAAAAAAAAA
-            </h1>
-          </button>
           <a href="/">
             <button
               style={styles.button}
