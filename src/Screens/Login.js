@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { styles } from "../Styles/Styles";
 //TODO: STYLING
 const Login = () => {
     //STATES NEEDED
@@ -20,8 +20,15 @@ const Login = () => {
                 <input type="text" className='usernameLoginTextbox' placeholder='Enter your username' value={username} onChange={(e) => setUsername(e.target.value)} /><br />
                 <label className='passwordLoginLabel'>Password:</label><br />
                 <input type="password" className='passwordLoginTextbox' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} /><br />
-                <input type='submit' className='loginButton' value='Login' onClick={handleLogin} /><br />
+                <input type='submit' style={styles.button} className='loginButton' value='Login' onClick={handleLogin} /><br />
             </form>
+            <a href="/Signup">
+            <button
+              style={styles.button}
+            >
+              Register
+            </button>
+          </a>
         </div>
     );
 }
