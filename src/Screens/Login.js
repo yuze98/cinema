@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { styles } from "../Styles/Styles";
+import ToolbarComp from "../Components/Toolbar";
 //TODO: STYLING
 const Login = () => {
     //STATES NEEDED
@@ -15,6 +16,7 @@ const Login = () => {
     //LOGIN SCREEN
     return (
         <div className="login">
+          <ToolbarComp Place="Login"/>
             <form>
                 <label className='usernameLoginLabel'>Username:</label><br />
                 <input type="text" className='usernameLoginTextbox' placeholder='Enter your username' value={username} onChange={(e) => setUsername(e.target.value)} /><br />

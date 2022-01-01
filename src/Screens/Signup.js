@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import ToolbarComp from "../Components/Toolbar";
 //TODO: STYLING
 const Signup = () => {
     //STATES NEEDED
@@ -38,6 +38,7 @@ const Signup = () => {
     //SIGNUP SCREEN
     return (
         <div className="signup">
+            <ToolbarComp Place="Signup"/>
             <form onSubmit={handleRegister}>
                 <label className='usernameRegisterLabel'>Username:</label><br />
                 <input type="text" className='usernameRegisterTextbox' placeholder='Enter your username' required value={username} onChange={(e) => setUsername(e.target.value)} /><br />

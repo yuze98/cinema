@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "onsenui/css/onsen-css-components.css";
-import { Toolbar } from "react-onsenui";
+import ToolbarComp from "../Components/Toolbar"
 import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
 import GetMovie from "../Server/GetMovie";
@@ -29,32 +29,7 @@ export default function Home(props) {
         backgroundColor: "#FFFFFF",
       }}
     >
-      <Toolbar
-        style={{
-          height: 100,
-          padding: 23,
-          background: "#CFFFDC",
-          opacity: 0.85,
-        }}
-      >
-        <div className="left">
-          <a href="/">
-            <button
-              style={styles.button}
-            >
-              Home
-            </button>
-          </a>
-        </div>
-        <div className="center" style={{ fontSize: 50, color: "#ff0066" }}>
-          Home
-        </div>
-        <div className="right">
-          <a href="/Login">
-            <button style={styles.button}>Login</button>
-          </a>
-        </div>
-      </Toolbar>
+      <ToolbarComp Place="Home"/>
       <div>
         <h1
           style={{
