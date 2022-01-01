@@ -3,7 +3,7 @@ import { styles } from "../Styles/Styles";
 import AddMovieModal from "./AddMovieModal";
 export default function AddMovie(props) {
   const title = 'Add Movie';
-  const image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlloYJnItqGKx9gXJQi73Cp9oBhRGROzurmg&usqp=CAU';
+  const image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW-IP68ZlFBoozaJH3YxzJaRtZOlemYek7Mw&usqp=CAU";
   const [isShown, setisShown] = useState(false);
   return (
     <div style={{ padding: 50 ,}}>

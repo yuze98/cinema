@@ -7,17 +7,17 @@ let baseURL = "https://localhost:3000/movie";
 
 const GetHome = async ()=> {
 
-  const [ids,setIds] = React.useState();
+  const [sHome,setHome] = React.useState();
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
-        setIds(response.data);
+      setHome(response.data);
       console.log(response.data)
     }).catch((e)=>{
         console.log(e)
     });
   }, []);
         
-    return [ids]
+    return [sHome]
 }
 
 export default GetHome;
