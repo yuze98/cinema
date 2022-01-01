@@ -2,12 +2,13 @@ export const styles = {
   topContainer: {
     display: "flex",
     flexDirection: "row",
+    overflow: 'auto'
   },
   toph1: {
     color: "red",
   },
   backg: {
-    backgroundColor: "#CFFFDC",
+    backgroundColor: "#1A374D",
   },
   button: {
     display: "inline-block",
@@ -21,7 +22,7 @@ export const styles = {
     fontSize: 25,
     color: "#ffffff",
     cursor: "pointer",
-    width: 250,
+    width: 200,
     height: 60,
   },
   button1: {
@@ -34,11 +35,11 @@ export const styles = {
     fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "#ff0066",
-    fontSize: 25,
+    fontSize: 20,
     color: "#ffffff",
     cursor: "pointer",
-    width: 250,
-    height: 60,
+    width: 150,
+    height: 50,
   },
   poster_button: {
     color: "white",

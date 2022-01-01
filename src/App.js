@@ -4,13 +4,12 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 import Home from './Screens/Home';
 import Login from './Screens/Login'
 import Signup from './Screens/Signup'
 import Reservation from './Screens/Reservation'
-
+import './App.css'
 
 export default function App() {
   return (

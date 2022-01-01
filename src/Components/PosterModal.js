@@ -43,7 +43,7 @@ function PosterModal(props) {
             <a href="/Reservation">
               <img
                 alt="Movie Poster"
-                style={{ width: 370, height: 500 }}
+                style={{ width: 320, height: 450 }}
                 src={props.image}
               />
             </a>

@@ -5,7 +5,7 @@ let baseURL = "https://localhost:3000/movie";
 // baseURL = "https://api.publicapis.org/entries";
 
 
-const GetHomeIds = async ()=> {
+const GetHome = async ()=> {
 
   const [ids,setIds] = React.useState();
   React.useEffect(() => {
@@ -20,4 +20,4 @@ const GetHomeIds = async ()=> {
     return [ids]
 }
 
-export default GetHomeIds;
+export default GetHome;

@@ -4,6 +4,7 @@ import ToolbarComp from "../Components/Toolbar"
 import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
 import GetMovie from "../Server/GetMovie";
+import { styles } from "../Styles/Styles";
 
 export default function Home(props) {
 
@@ -26,17 +27,19 @@ export default function Home(props) {
       style={{
         display: "block",
         width: "100%",
-        backgroundColor: "#FFFFFF",
+        heigh:"100%",
+        backgroundColor: "#B1D0E0",
       }}
     >
       <ToolbarComp Place="Home"/>
       <div>
         <h1
           style={{
-            fontSize: 60,
+            fontSize: 42,
             color: "Black",
             marginLeft: "45%",
             opacity: 0.8,
+            fontWeight:'Roboto'
           }}
         >
           Movie List
@@ -58,35 +61,11 @@ export default function Home(props) {
           title="Black Widow"
           image="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"
         />
+        <Poster
+          title="Black dude"
+          image="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"
+        />
       </div>
     </div>
   );
 }
-
-const styles = {
-  topContainer: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  toph1: {
-    color: "red",
-  },
-  backg: {
-    backgroundColor: "#CFFFDC",
-  },
-  button: {
-    display: "inline-block",
-    padding: 10,
-    border: 0.1,
-    borderRadius: 12,
-    fontFamily: "Roboto",
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#ff0066",
-    fontSize: 25,
-    color: "#ffffff",
-    cursor: "pointer",
-    width: 250,
-    height: 60,
-  },
-};

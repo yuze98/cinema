@@ -25,7 +25,7 @@ export default function Poster(props) {
         >
           <img
             alt="Movie Poster"
-            style={{ width: 270, height: 400, paddingLeft: 50 }}
+            style={{ width: 250, height: 380, paddingLeft: 50 }}
             src={image}
           />
         </button>

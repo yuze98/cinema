@@ -5,7 +5,7 @@ export default function ToolbarComp(props) {
         style={{
           height: 100,
           padding: 23,
-          background: "#CFFFDC",
+          background: "#1A374D",
           opacity: 0.85,
         }}
       >
@@ -49,10 +49,10 @@ const styles = {
       fontWeight: "bold",
       textAlign: "center",
       backgroundColor: "#ff0066",
-      fontSize: 25,
+      fontSize: 20,
       color: "#ffffff",
       cursor: "pointer",
-      width: 250,
-      height: 60,
+      width: 150,
+      height: 50,
     },
   };
