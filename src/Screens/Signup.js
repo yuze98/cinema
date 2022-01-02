@@ -1,5 +1,7 @@
 import { useState } from "react";
 import ToolbarComp from "../Components/Toolbar";
+import { styles } from "../Styles/Styles";
+
 //TODO: STYLING
 const Signup = () => {
     //STATES NEEDED
@@ -40,25 +42,25 @@ const Signup = () => {
         <div className="signup">
             <ToolbarComp Place="Signup"/>
             <form onSubmit={handleRegister}>
-                <label className='usernameRegisterLabel'>Username:</label><br />
-                <input type="text" className='usernameRegisterTextbox' placeholder='Enter your username' required value={username} onChange={(e) => setUsername(e.target.value)} /><br />
-                <label className='passwordRegisterLabel'>Password:</label><br />
-                <input type="password" className='passwordRegisterTextbox' placeholder='Enter your password' required value={password} onChange={(e) => setPassword(e.target.value)} /><br />
-                <label className='passwordConfirmLabel'>Confirm Password:</label><br />
-                <input type="password" className='passwordConfirmTextbox' placeholder='Enter your password' required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} /><br />
-                <label className='firstNameLabel'>First Name:</label><br />
-                <input type="text" className='firstNameTextbox' placeholder='Enter your first name' required value={firstName} onChange={(e) => setFirstName(e.target.value)} /><br />
-                <label className='lastNameLabel'>Last Name:</label><br />
-                <input type="text" className='lastNameTextbox' placeholder='Enter your last name' required value={lastName} onChange={(e) => setLastName(e.target.value)} /><br />
-                <label className='emailAddressLabel'>Email Address:</label><br />
-                <input type="text" className='emailAddressTextbox' placeholder='Enter your email address' required value={email} onChange={(e) => setEmail(e.target.value)} /><br />
-                <label className='roleLabel'>Role:</label><br />
-                <select className='roleCombobox' value={role} onChange={(e) => setRole(e.target.value)}>
+                <label style={styles.label} className='usernameRegisterLabel'>Username:</label><br />
+                <input type="text" style={styles.textBox} className='usernameRegisterTextbox' placeholder='Enter your username' required value={username} onChange={(e) => setUsername(e.target.value)} /><br />
+                <label style={styles.label} className='passwordRegisterLabel'>Password:</label><br />
+                <input type="password" style={styles.textBox} className='passwordRegisterTextbox' placeholder='Enter your password' required value={password} onChange={(e) => setPassword(e.target.value)} /><br />
+                <label style={styles.label} className='passwordConfirmLabel'>Confirm Password:</label><br />
+                <input type="password" style={styles.textBox} className='passwordConfirmTextbox' placeholder='Enter your password' required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} /><br />
+                <label style={styles.label} className='firstNameLabel'>First Name:</label><br />
+                <input type="text" style={styles.textBox} className='firstNameTextbox' placeholder='Enter your first name' required value={firstName} onChange={(e) => setFirstName(e.target.value)} /><br />
+                <label style={styles.label} className='lastNameLabel'>Last Name:</label><br />
+                <input type="text" style={styles.textBox} className='lastNameTextbox' placeholder='Enter your last name' required value={lastName} onChange={(e) => setLastName(e.target.value)} /><br />
+                <label style={styles.label} className='emailAddressLabel'>Email Address:</label><br />
+                <input type="text" style={styles.textBox} className='emailAddressTextbox' placeholder='Enter your email address' required value={email} onChange={(e) => setEmail(e.target.value)} /><br />
+                <label style={styles.label} className='roleLabel'>Role:</label><br />
+                <select style={styles.comboBox} className='roleCombobox' value={role} onChange={(e) => setRole(e.target.value)}>
                 <option value="manager">Manager</option>
                 <option value="customer" selected>Customer</option>
                 </select><br />
-                <input type='submit' className='registerButton' value='Register'/><br />
-                <p>{validationState}</p>
+                <input type='submit' style={styles.loginAndRegisterButtons} className='registerButton' value='Register'/><br />
+                <p style={styles.alert}>{validationState}</p>
             </form>
       </div>
     );

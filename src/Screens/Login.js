@@ -33,19 +33,13 @@ const Login = () => {
         <div className="login">
           <ToolbarComp Place="Login"/>
             <form >
-                <label className='usernameLoginLabel'>Username:</label><br />
-                <input type="text" className='usernameLoginTextbox' placeholder='Enter your username' value={username} onChange={(e) => setUsername(e.target.value)} /><br />
-                <label className='passwordLoginLabel'>Password:</label><br />
-                <input type="password" className='passwordLoginTextbox' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} /><br />
-                <input type='submit' style={styles.button} className='loginButton' value='Login' onClick={handleLogin} /><br />
+                <label style={styles.label} className='usernameLoginLabel'>Username:</label><br />
+                <input type="text" style={styles.textBox} className='usernameLoginTextbox' placeholder='Enter your username' value={username} onChange={(e) => setUsername(e.target.value)} /><br />
+                <label style={styles.label} className='passwordLoginLabel'>Password:</label><br />
+                <input type="password" style={styles.textBox} className='passwordLoginTextbox' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} /><br />
+                <input type='submit' style={styles.loginAndRegisterButtons} className='loginButton' value='Login' onClick={handleLogin} /><br />
             </form>
-            <a href="/Signup">
-            <button
-              style={styles.button}
-            >
-              Register
-            </button>
-          </a>
+            <a href="/Signup"><button style={styles.loginAndRegisterButtons}> Register </button></a>
         </div>
     );
 }
