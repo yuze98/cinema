@@ -54,7 +54,7 @@ export const styles = {
     opacity: 0.8,
     borderColor: "#ff0066",
     height: 50,
-    width: 100,
+    width: 200,
     fontSize: 25,
   },
   title: {

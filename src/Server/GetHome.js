@@ -1,16 +1,14 @@
 import axios from 'axios';
 import React from 'react';
-
-let baseURL = "https://localhost:3000/movie";
-// baseURL = "https://api.publicapis.org/entries";
+import MovieDB from './MovieDB';
 
 
 const GetHome = async ()=> {
 
   const [sHome,setHome] = React.useState();
   React.useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setHome(response.data);
+    MovieDB.get('/movie').then((response) => {
+      setHome(response.data.data);
       console.log(response.data)
     }).catch((e)=>{
         console.log(e)

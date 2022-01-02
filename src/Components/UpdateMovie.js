@@ -3,22 +3,23 @@ import { styles } from "../Styles/Styles";
 import { useEffect, useState } from "react";
 import Poster from "./Poster";
 
-function AddMovieModal(props) {
+function UpdateMovieModal(props) {
   const [shown, setShown] = useState(props.isShown);
   useEffect(() => {
-    console.log("inside useEffect");
+    console.log("inside useEffect update",props.isShown);
     setShown(props.isShown);
   }, [props.isShown]);
 
-  const [date, setDate] = useState("");
-  const [starts, setStarts] = useState("");
-  const [ends, setEnds] = useState("");
-  const [screen, setScreen] = useState("");
-  const [poster, setPoster] = useState("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8af5e086459421.5d9a79cc7e3d5.jpg");
-  const [title, setTitle] = useState("");
+  const [date, setDate] = useState(props.date);
+  const [starts, setStarts] = useState(props.starts);
+  const [ends, setEnds] = useState(props.ends);
+  const [screen, setScreen] = useState(props.screen);
+  const [poster, setPoster] = useState(props.poster);
+  const [title, setTitle] = useState(props.title);
 
   function handlesubmit(event) {
-    alert("Movie Added!", date);
+    alert("Movie Updated!", date);
+    setShown(false)
     event.preventDefault();
   }
 
@@ -49,7 +50,7 @@ function AddMovieModal(props) {
                   })
                 }
               >
-                Add Movie Details
+                Update Movie Details
               </li>
               <div
                 style={{
@@ -148,4 +149,4 @@ function AddMovieModal(props) {
     </Modal>
   );
 }
-export default AddMovieModal;
+export default UpdateMovieModal;
