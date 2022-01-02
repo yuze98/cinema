@@ -2,20 +2,23 @@ import { Modal } from "react-onsenui";
 import { styles } from "../Styles/Styles";
 import { useEffect, useState } from "react";
 import UpdateMovieModal from "./UpdateMovie";
+import { useNavigate } from "react-router";
 function PosterModal(props) {
   const [shown, setShown] = useState(props.isShown);
   const [update, setUpdate] = useState(false);
+  const nav = useNavigate();
+
   useEffect(() => {
     console.log("inside useEffect", props.isShown);
     setShown(props.isShown);
   }, [props.isShown]);
-  const date = props.mov.date.split('T')[0]//"17/12/2021";
-  const start = props.mov.startTime.split('T')[1].split('.')[0] + ' PM'
-  const end =props.mov.endTime.split('T')[1].split('.')[0] +' PM'
-  const Screeing_Room = "10C"//props.mov.screen;
+  const date = props.mov.date.split("T")[0]; //"17/12/2021";
+  const start = props.mov.startTime.split("T")[1].split(".")[0] + " PM";
+  const end = props.mov.endTime.split("T")[1].split(".")[0] + " PM";
+  const Screeing_Room = "10C"; //props.mov.screen;
   const image = props.image;
   const title = props.title;
-  const isManager=props.isManager;
+  const isManager = props.isManager;
 
   return (
     <div>
@@ -74,20 +77,27 @@ function PosterModal(props) {
                     src={props.image}
                   />
                 </a>
-                <button input='button' onClick={()=>{}}>
-
+                <button
+                  input="button"
+                  onClick={() => {
+                    nav("/Reservation", { state: { mov: props.mov } });
+                  }}
+                >
+                  here
                 </button>
               </div>
               <div style={{ flexDirection: "row", marginTop: 100 }}>
-              {isManager?(<button
-                  type="button"
-                  style={styles.modalbtn}
-                  onClick={() => {
-                    setUpdate(true);
-                  }}
-                >
-                  <p1>Update Movie</p1>
-                </button>):null}
+                {isManager ? (
+                  <button
+                    type="button"
+                    style={styles.modalbtn}
+                    onClick={() => {
+                      setUpdate(true);
+                    }}
+                  >
+                    <p1>Update Movie</p1>
+                  </button>
+                ) : null}
                 <a href="/Reservation">
                   <button
                     type="button"
