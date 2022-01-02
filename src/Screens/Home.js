@@ -10,27 +10,42 @@ import MovieDB from "../Server/MovieDB";
 
 export default function Home(props) {
   const [homeDet, setHomeDet] = useState(); //returns the Movie Details array
-  
+
   const [m, setm] = useState(true); //returns the Movie Details array
   //const location = useLocation();
-  console.log(homeDet)
   const isManager = false; // location.state.isManager
   //const token = location.state.token
-  useEffect(()=>{
+  console.log(homeDet);
+  useEffect(() => {
     //Promise.resolve(takes response)
-    if(m){
-    MovieDB.get('/movie').then((response) => {
-    setHomeDet(response.data.data);
-    console.log(response.data)
-  }).catch((e)=>{
-      console.log(e)
-  });
-}
-if(m)
-  {
-    setm(false)
+
+    if (m) {
+      MovieDB.get("/movie")
+        .then((response) => {
+          setHomeDet(response.data.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+    if (m) {
+      setm(false);
+    }
+  }, [m]);
+
+  const movie = [];
+  if (homeDet !== undefined) {
+    homeDet.forEach((element) => {
+      movie.push(
+        <Poster
+          mov = {element}
+          title={element.title}
+          image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"
+          isManager={isManager}
+        />
+      );
+    });
   }
-},[m])
   return (
     <div
       style={{
@@ -40,7 +55,7 @@ if(m)
       }}
     >
       <ToolbarComp Place="Home" />
-      <div >
+      <div>
         <h1
           style={{
             fontSize: 42,
@@ -48,7 +63,6 @@ if(m)
             marginLeft: "45%",
             opacity: 0.8,
             fontWeight: "Roboto",
-            
           }}
         >
           Movie List
@@ -57,28 +71,8 @@ if(m)
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>
         {/* we'll add Condition to show this if user is manager */}
-        {isManager !== undefined && isManager===true  ? <AddMovie /> : null}
-        
-        <Poster
-          title="SpiderMan: No Way Home"
-          image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"
-          isManager={isManager}
-        />
-        <Poster
-          title="Free Guy"
-          image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQEUMqXik1Ntuc2NTpCgbX2JENwlZD3kwDZa4nDm6TCkXVX9FvU"
-          isManager={isManager}
-        />
-        <Poster
-          title="Black Widow"
-          image="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"
-          isManager={isManager}
-        />
-        <Poster
-          title="Black dude"
-          image="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"
-          isManager={isManager}
-        />
+        {isManager !== undefined && isManager === true ? <AddMovie /> : null}
+        {movie}
       </div>
     </div>
   );

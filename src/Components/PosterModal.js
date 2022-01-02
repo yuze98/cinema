@@ -9,10 +9,10 @@ function PosterModal(props) {
     console.log("inside useEffect", props.isShown);
     setShown(props.isShown);
   }, [props.isShown]);
-  const date = "17/12/2021";
-  const start = "1:00 PM";
-  const end = "3:30 PM";
-  const Screeing_Room = "10C";
+  const date = props.mov.date.split('T')[0]//"17/12/2021";
+  const start = props.mov.startTime.split('T')[1].split('.')[0] + ' PM'
+  const end =props.mov.endTime.split('T')[1].split('.')[0] +' PM'
+  const Screeing_Room = "10C"//props.mov.screen;
   const image = props.image;
   const title = props.title;
   const isManager=props.isManager;
@@ -74,6 +74,9 @@ function PosterModal(props) {
                     src={props.image}
                   />
                 </a>
+                <button input='button' onClick={()=>{}}>
+
+                </button>
               </div>
               <div style={{ flexDirection: "row", marginTop: 100 }}>
               {isManager?(<button
