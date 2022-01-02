@@ -8,7 +8,7 @@ export default function Poster(props) {
   return (
     <div style={{ padding: 50 }}>
       <div>
-      <PosterModal isShown={isShown} title={props.title} image={props.image}/>
+      <PosterModal isShown={isShown} title={props.title} image={props.image} isManager={props.isManager}/>
       </div>
       <div style={{ textAlign: "center" }}>
         <h2>{title}</h2>

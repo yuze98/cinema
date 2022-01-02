@@ -1,29 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "onsenui/css/onsen-css-components.css";
 import ToolbarComp from "../Components/Toolbar";
 import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
-import GetMovie from "../Server/GetMovie";
+import GetHome from "../Server/GetHome";
 import { styles } from "../Styles/Styles";
 import { useLocation } from "react-router-dom";
-export default function Home(props) {
-  const [movDet, setMovDet] = useState(GetMovie("/61c73770017b0cbec6c84133")); //returns the Movie Details array
-  const [here, setHere] = useState(true); //returns the Movie Details array
-  //const location = useLocation();
+import MovieDB from "../Server/MovieDB";
 
+export default function Home(props) {
+  const [homeDet, setHomeDet] = useState(); //returns the Movie Details array
+  
+  const [m, setm] = useState(true); //returns the Movie Details array
+  //const location = useLocation();
+  console.log(homeDet)
   const isManager = false; // location.state.isManager
   //const token = location.state.token
-  // React.useEffect(()=>{
-  //   async function getm(){
-  //     setMovDet(await GetMovie('/61c73770017b0cbec6c84133'));
-  //     setHere(false)
-  //   }
-  //   if (here)
-  //   {
-  //     getm()
-  //   }
-  //   console.log('here')
-  // },[]);
+  useEffect(()=>{
+    if(m){
+    MovieDB.get('/movie').then((response) => {
+    setHomeDet(response.data.data);
+    console.log(response.data)
+  }).catch((e)=>{
+      console.log(e)
+  });
+}
+if(m)
+  {
+    setm(false)
+  }
+},[m])
   return (
     <div
       style={{
@@ -50,10 +56,12 @@ export default function Home(props) {
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>
         {/* we'll add Condition to show this if user is manager */}
-        {isManager !== undefined ? <AddMovie /> : null}
+        {isManager !== undefined && isManager===true  ? <AddMovie /> : null}
+        
         <Poster
           title="SpiderMan: No Way Home"
           image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"
+          isManager={isManager}
         />
         <Poster
           title="Free Guy"

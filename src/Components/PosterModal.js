@@ -15,6 +15,7 @@ function PosterModal(props) {
   const Screeing_Room = "10C";
   const image = props.image;
   const title = props.title;
+  const isManager=props.isManager;
 
   return (
     <div>
@@ -75,7 +76,7 @@ function PosterModal(props) {
                 </a>
               </div>
               <div style={{ flexDirection: "row", marginTop: 100 }}>
-                <button
+              {isManager?(<button
                   type="button"
                   style={styles.modalbtn}
                   onClick={() => {
@@ -83,7 +84,7 @@ function PosterModal(props) {
                   }}
                 >
                   <p1>Update Movie</p1>
-                </button>
+                </button>):null}
                 <a href="/Reservation">
                   <button
                     type="button"
