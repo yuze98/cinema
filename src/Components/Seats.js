@@ -53,19 +53,26 @@ export default function Seats(props) {
         setReserved([])
     }
     function handleReserve (e) {
+        //send request here
         setReserved([])
 
     }
     console.log(reserved)
     return (
         <div>
+            <div style={styles.screen}>
+                    Screen
+                </div>
+                <br></br>
             <div style={styles.bg}>
                 {seats}
                 
             </div>
             <div style={styles.buttons}>
-            <button style={styles.otherbutton} onClick={handleReserve}>Reserve Seats!</button>
-            <button style={styles.otherbutton} onClick={handleClear}>Clear Selected Seats</button>
+                <br></br>
+                
+                <button style={styles.otherbutton} onClick={handleReserve}>Reserve Seats!</button>
+                <button style={styles.otherbutton} onClick={handleClear}>Clear Selected Seats</button>
             </div>
         </div>
         
@@ -75,45 +82,53 @@ export default function Seats(props) {
 
 const styles = {
     button: {
-      width: 40,
-      height: 40,
+      width: 110,
+      height: 110,
       'background-color': 'grey',
       },
       selbutton: {
-        width: 40,
-        height: 40,
+        width: 110,
+        height: 110,
         'background-color': 'rgb(255, 154, 60)',
         },
     clickedbutton: {
-        width: 40,
-        height: 40,
+        width: 110,
+        height: 110,
         'background-color': 'yellow',
         },
     notbutton: {
-        width: 40,
-        height: 40,
+        width: 110,
+        height: 110,
        'background-color': 'red',
-    },
-    bg: {
-        position: 'absolute',
-        top: '20%',
     },
     buttons: {
         position: 'absolute',
         top: '100%',
         left: '20%',
       },
-      otherbutton: {
+    otherbutton: {
         display: 'inline-block',
         padding:10,
+        marginLeft: 5,
+        marginRight: 5,
         border:0.1,
         borderRadius: 12,
+        position: "relative",
+        left: -40,
         fontFamily: 'Roboto',
         fontWeight: 'bold',
         textAlign:'center',
         backgroundColor:'#ff0066',
         fontSize: 25,
         cursor: 'pointer'
-        }
+    },
+    screen: {
+        
+        width: 550,
+        height: 30,
+        color: "white",
+        backgroundColor: "black",
+        textAlign: "center"
+      },
     
   };
