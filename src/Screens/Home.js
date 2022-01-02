@@ -17,6 +17,7 @@ export default function Home(props) {
   const isManager = false; // location.state.isManager
   //const token = location.state.token
   useEffect(()=>{
+    //Promise.resolve(takes response)
     if(m){
     MovieDB.get('/movie').then((response) => {
     setHomeDet(response.data.data);
@@ -66,14 +67,17 @@ if(m)
         <Poster
           title="Free Guy"
           image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQEUMqXik1Ntuc2NTpCgbX2JENwlZD3kwDZa4nDm6TCkXVX9FvU"
+          isManager={isManager}
         />
         <Poster
           title="Black Widow"
           image="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"
+          isManager={isManager}
         />
         <Poster
           title="Black dude"
           image="https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"
+          isManager={isManager}
         />
       </div>
     </div>
