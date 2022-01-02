@@ -30,6 +30,7 @@ body{
 html{
   scroll-behavior: smooth;
   height: 100%;
+  background-color: #EADEB8;
 }
 .App-link {
   color: #61dafb;
