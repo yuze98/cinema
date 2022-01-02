@@ -15,7 +15,7 @@ const UserSignIn = async (props)=> {
   const[success,setsuccess] = React.useState(false)
   const[token,setToken] = React.useState('')
   const [message,setMessage] = React.useState();
-  const [isManager,setIsManager] = React.useState('');
+  const [isManager,setIsManager] = React.useState();
 
   React.useEffect(() => {
     axios.post(baseURL,cred).then((response) => {

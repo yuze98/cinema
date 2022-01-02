@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styles } from "../Styles/Styles";
 import ToolbarComp from "../Components/Toolbar";
 import UserSignIn from "../Server/UserSignIn";
@@ -8,15 +8,26 @@ const Login = () => {
     //STATES NEEDED
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-  const naviagte = useNavigate()
+    const naviagte = useNavigate()
+    const [mounted,setm] = useState(false);
     //A HANDLER FOR THE LOGIN BUTTON
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         //TODO: BACKEND REQUEST
-        const [message,success,token] = UserSignIn(password=password,email = username)
-        naviagte('/',{state:{token: token,isManager:true}})
+        setm(true)
+        naviagte('/',{state:{token: 'token',isManager:true}})
+        
         e.preventDefault();
     }
-
+    useEffect(()=>{
+      if(mounted)
+      {
+        const [message,success,token] = UserSignIn({password: password,email :username})
+      }
+      else
+      {
+        setm(false)
+      }
+    },[mounted])
     //LOGIN SCREEN
     return (
         <div className="login">
