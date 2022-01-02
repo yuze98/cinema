@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { styles } from "../Styles/Styles";
 import ToolbarComp from "../Components/Toolbar";
+import UserSignIn from "../Server/UserSignIn";
+import { useNavigate } from "react-router-dom";
 //TODO: STYLING
 const Login = () => {
     //STATES NEEDED
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+  const naviagte = useNavigate()
     //A HANDLER FOR THE LOGIN BUTTON
     const handleLogin = (e) => {
         //TODO: BACKEND REQUEST
+        const [message,success,token] = UserSignIn(password=password,email = username)
+        naviagte('/',{state:{token: token,isManager:true}})
         e.preventDefault();
     }
 
@@ -17,7 +21,7 @@ const Login = () => {
     return (
         <div className="login">
           <ToolbarComp Place="Login"/>
-            <form>
+            <form >
                 <label className='usernameLoginLabel'>Username:</label><br />
                 <input type="text" className='usernameLoginTextbox' placeholder='Enter your username' value={username} onChange={(e) => setUsername(e.target.value)} /><br />
                 <label className='passwordLoginLabel'>Password:</label><br />

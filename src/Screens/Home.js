@@ -5,12 +5,14 @@ import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
 import GetMovie from "../Server/GetMovie";
 import { styles } from "../Styles/Styles";
-
+import { useLocation } from "react-router-dom";
 export default function Home(props) {
 
   const [movDet,setMovDet] = useState(GetMovie('/61c73770017b0cbec6c84133'))  //returns the Movie Details array
   const [here,setHere] = useState(true)  //returns the Movie Details array
-
+  const location = useLocation();
+  const isManager = location.state.isManager
+  const token = location.state.token
   // React.useEffect(()=>{
   //   async function getm(){
   //     setMovDet(await GetMovie('/61c73770017b0cbec6c84133'));
@@ -43,12 +45,15 @@ export default function Home(props) {
           }}
         >
           Movie List
+          
+          
         </h1>
+        <button input="button" style={styles.button} onClick={()=>{console.log(location.state.ahmed)}} > heree</button>
       </div>
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>
         {/* we'll add Condition to show this if user is manager */}
-        <AddMovie />
+        {location.state.isManager?(<AddMovie />):null}
         <Poster
           title="SpiderMan: No Way Home"
           image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"
