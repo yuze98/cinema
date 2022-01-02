@@ -1,4 +1,5 @@
 import { Toolbar } from "react-onsenui";
+import { styles } from "../Styles/Styles";
 export default function ToolbarComp(props) {
     return (
     <Toolbar
@@ -18,9 +19,11 @@ export default function ToolbarComp(props) {
             </button>
           </a>
         </div>
-        <div className="center" style={{ fontSize: 50, color: "#ff0066" }}>
+        <div className="center" style={{ fontSize: 50, color: "#E26A2C" }}>
           {props.Place}
+          
         </div>
+       
         <div className="right">
           <a href="/Login">
             <button style={styles.button}>Login</button>
@@ -29,30 +32,3 @@ export default function ToolbarComp(props) {
       </Toolbar>
     )
 }
-const styles = {
-    topContainer: {
-      display: "flex",
-      flexDirection: "row",
-    },
-    toph1: {
-      color: "red",
-    },
-    backg: {
-      backgroundColor: "#CFFFDC",
-    },
-    button: {
-      display: "inline-block",
-      padding: 10,
-      border: 0.1,
-      borderRadius: 12,
-      fontFamily: "Roboto",
-      fontWeight: "bold",
-      textAlign: "center",
-      backgroundColor: "#ff0066",
-      fontSize: 20,
-      color: "#ffffff",
-      cursor: "pointer",
-      width: 150,
-      height: 50,
-    },
-  };

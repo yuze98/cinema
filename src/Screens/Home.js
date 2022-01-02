@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import "onsenui/css/onsen-css-components.css";
-import ToolbarComp from "../Components/Toolbar"
+import ToolbarComp from "../Components/Toolbar";
 import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
 import GetMovie from "../Server/GetMovie";
 import { styles } from "../Styles/Styles";
 import { useLocation } from "react-router-dom";
 export default function Home(props) {
-
-  const [movDet,setMovDet] = useState(GetMovie('/61c73770017b0cbec6c84133'))  //returns the Movie Details array
-  const [here,setHere] = useState(true)  //returns the Movie Details array
+  const [movDet, setMovDet] = useState(GetMovie("/61c73770017b0cbec6c84133")); //returns the Movie Details array
+  const [here, setHere] = useState(true); //returns the Movie Details array
   //const location = useLocation();
 
-  const isManager = false// location.state.isManager
+  const isManager = false; // location.state.isManager
   //const token = location.state.token
   // React.useEffect(()=>{
   //   async function getm(){
@@ -30,30 +29,28 @@ export default function Home(props) {
       style={{
         display: "block",
         width: "100%",
-        heigh:"100%",
-        backgroundColor: "#B1D0E0",
+        height: "100%",
       }}
     >
-      <ToolbarComp Place="Home"/>
-      <div>
+      <ToolbarComp Place="Home" />
+      <div >
         <h1
           style={{
             fontSize: 42,
             color: "Black",
             marginLeft: "45%",
             opacity: 0.8,
-            fontWeight:'Roboto'
+            fontWeight: "Roboto",
+            
           }}
         >
           Movie List
-          
-          
         </h1>
       </div>
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>
         {/* we'll add Condition to show this if user is manager */}
-        {isManager!==undefined?(<AddMovie />):null}
+        {isManager !== undefined ? <AddMovie /> : null}
         <Poster
           title="SpiderMan: No Way Home"
           image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"
