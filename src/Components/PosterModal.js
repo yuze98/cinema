@@ -122,7 +122,7 @@ function PosterModal(props) {
         </Modal>
       ) : (
         <UpdateMovieModal
-          isShown={props.isShown}
+          isShown={shown}
           date={date}
           starts={start}
           ends={end}

@@ -13,7 +13,7 @@ export default function Home(props) {
 const location = useLocation()
   const [m, setm] = useState(true); //returns the Movie Details array
   //const location = useLocation();
-  const isManager = location.state.isManager; // location.state.isManager
+  const isManager =true// location.state.isManager; // location.state.isManager
   //const token = location.state.token
   console.log(isManager);
 

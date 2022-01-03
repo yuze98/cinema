@@ -1,7 +1,6 @@
 import { Modal } from "react-onsenui";
 import { styles } from "../Styles/Styles";
 import { useEffect, useState } from "react";
-import Poster from "./Poster";
 
 function UpdateMovieModal(props) {
   const [shown, setShown] = useState(props.isShown);
@@ -142,7 +141,18 @@ function UpdateMovieModal(props) {
             </ul>
           </form>
           
-          <Poster title={title} image={poster} style={{marginBottom: '50%',}}/>
+          <div style={{ padding: 50 }}>
+            <div style={{ textAlign: "center" }}>
+              <h2>{title}</h2>
+            </div>
+            <div style={{ margin: "auto" }}>
+              <img
+                alt="Movie Poster"
+                style={{ width: 250, height: 380, paddingLeft: 50 }}
+                src={poster}
+              />
+            </div>
+          </div>
         </div>
         
       </div>

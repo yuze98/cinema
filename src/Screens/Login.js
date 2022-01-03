@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { styles } from "../Styles/Styles";
 import ToolbarComp from "../Components/Toolbar";
-import UserSignIn from "../Server/UserSignIn";
 import { useNavigate } from "react-router-dom";
 import MovieDB from "../Server/MovieDB";
 
