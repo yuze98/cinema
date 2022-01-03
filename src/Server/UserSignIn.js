@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import MovieDB from './MovieDB';
 
 let baseURL = "https://localhost:3000/sign-in";
 // baseURL = "https://api.publicapis.org/entries";
@@ -18,7 +19,7 @@ const UserSignIn = async (props)=> {
   const [isManager,setIsManager] = React.useState();
 
   React.useEffect(() => {
-    axios.post(baseURL,cred).then((response) => {
+    MovieDB.post('/sign-in',cred).then((response) => {
       console.log(response.data)
       setMessage('User Sign in with status:'+response.status)
       setToken(response.data.token)
@@ -32,7 +33,7 @@ const UserSignIn = async (props)=> {
     });
   }, []);
         
-    return [message,success,token]
+    return [message,success,token,isManager]
 }
 
 export default UserSignIn;

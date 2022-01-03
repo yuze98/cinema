@@ -3,31 +3,30 @@ import { styles } from "../Styles/Styles";
 import ToolbarComp from "../Components/Toolbar";
 import UserSignIn from "../Server/UserSignIn";
 import { useNavigate } from "react-router-dom";
+import MovieDB from "../Server/MovieDB";
+
 //TODO: STYLING
 const Login = () => {
     //STATES NEEDED
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isManager,setIsManager] = useState();
+    const[token,setToken] = useState('')
+    
     const naviagte = useNavigate()
-    const [mounted,setm] = useState(false);
-    //A HANDLER FOR THE LOGIN BUTTON
+    //A HANDLER FOR THE LOGIN BUTTON\
     const handleLogin = async (e) => {
         //TODO: BACKEND REQUEST
-        setm(true)
-        naviagte('/',{state:{token: 'token',isManager:true}})
-        
+        await MovieDB.post('/sign-in',{password: password,email :username}).then((response) => {
+          console.log(response.data)
+          setToken(response.data.token) 
+          response.data.data.user.role==='manager'?setIsManager(true):setIsManager(false);
+        }).catch((e)=>{
+            console.log(e)
+        });
+        //naviagte('/',{state:{token: token,isManager:isManager}})
         e.preventDefault();
     }
-    useEffect(()=>{
-      if(mounted)
-      {
-        const [message,success,token] = UserSignIn({password: password,email :username})
-      }
-      else
-      {
-        setm(false)
-      }
-    },[mounted])
     //LOGIN SCREEN
     return (
         <div className="login">

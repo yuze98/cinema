@@ -3,12 +3,15 @@ import ToolbarComp from "../Components/Toolbar";
 import Poster from "../Components/Poster";
 import {useState, useEffect} from "react"
 import GetMovie from "../Server/GetMovie";
+import { useLocation } from "react-router";
 const seatL = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0]; //dummy array for now, will be gotten via request
 
-export default function Reservation() {
+export default function Reservation(props) {
   var array = [{}]
-  array = GetMovie({id:110})
-    
+  //array = GetMovie({id:110}) 
+  const location = useLocation()
+  const title = location.state.mov.title
+  const room = location.state.mov.room
   console.log(array)
   return (
     <div>
@@ -20,15 +23,11 @@ export default function Reservation() {
  
         </div>
         <div style={styles.poster}>
-          <h1>title</h1>
-          <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg" width="250" height="380"/>
-        </div>
-        <div style={styles.poster}>
-          <h1>title</h1>
+          <h1>{title}</h1>
           <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg" width="250" height="380"/>
         </div>
         <div style ={styles.info}>
-          <h1> Room 1</h1>
+          <h1> Screen: {room}</h1>
         </div>
 
       </div>

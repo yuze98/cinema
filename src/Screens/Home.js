@@ -10,15 +10,15 @@ import MovieDB from "../Server/MovieDB";
 
 export default function Home(props) {
   const [homeDet, setHomeDet] = useState(); //returns the Movie Details array
-
+const location = useLocation()
   const [m, setm] = useState(true); //returns the Movie Details array
   //const location = useLocation();
-  const isManager = false; // location.state.isManager
+  const isManager = location.state.isManager; // location.state.isManager
   //const token = location.state.token
-  console.log(homeDet);
+  console.log(isManager);
+
   useEffect(() => {
     //Promise.resolve(takes response)
-
     if (m) {
       MovieDB.get("/movie")
         .then((response) => {
@@ -38,13 +38,21 @@ export default function Home(props) {
     homeDet.forEach((element) => {
       movie.push(
         <Poster
-          mov = {element}
+          mov={element}
           title={element.title}
           image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"
           isManager={isManager}
         />
       );
     });
+  } else {
+    movie.push(
+      <h1
+        style={{ margin: "auto", color: "#9B0000", fontSize: 60, padding: 150 }}
+      >
+        Loading...
+      </h1>
+    );
   }
   return (
     <div

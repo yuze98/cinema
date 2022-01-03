@@ -70,20 +70,17 @@ function PosterModal(props) {
             <div style={{ paddingBottom: 300 }}>
               <h1 style={styles.title}>{props.title}</h1>
               <div>
-                <a href="/Reservation">
-                  <img
-                    alt="Movie Poster"
-                    style={{ width: 320, height: 450 }}
-                    src={props.image}
-                  />
-                </a>
                 <button
                   input="button"
                   onClick={() => {
                     nav("/Reservation", { state: { mov: props.mov } });
                   }}
                 >
-                  here
+                  <img
+                    alt="Movie Poster"
+                    style={{ width: 320, height: 450 }}
+                    src={props.image}
+                  />
                 </button>
               </div>
               <div style={{ flexDirection: "row", marginTop: 100 }}>
@@ -104,6 +101,7 @@ function PosterModal(props) {
                     style={styles.modalbtn}
                     onClick={() => {
                       setShown(false);
+                      nav("/Reservation", { state: { mov: props.mov } });
                     }}
                   >
                     <p1>Get Ticket</p1>

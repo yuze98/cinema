@@ -2,23 +2,37 @@ import { Modal } from "react-onsenui";
 import { styles } from "../Styles/Styles";
 import { useEffect, useState } from "react";
 import Poster from "./Poster";
+import MovieDB from "../Server/MovieDB";
+import { useNavigate } from "react-router";
 
 function AddMovieModal(props) {
   const [shown, setShown] = useState(props.isShown);
   useEffect(() => {
-    console.log("inside useEffect");
+    console.log("inside useEffect",props.isShown);
     setShown(props.isShown);
   }, [props.isShown]);
-
+  //const nav = useNavigate()
   const [date, setDate] = useState("");
   const [starts, setStarts] = useState("");
   const [ends, setEnds] = useState("");
   const [screen, setScreen] = useState("");
   const [poster, setPoster] = useState("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8af5e086459421.5d9a79cc7e3d5.jpg");
   const [title, setTitle] = useState("");
-
   function handlesubmit(event) {
     alert("Movie Added!", date);
+    MovieDB.post('movie/',{
+      "img": {},
+      "title": title,
+      "room": screen,
+      "startTime": starts,
+      "endTime": ends,
+      "date": date
+    }).then((response) => {
+     
+      console.log(response.status)
+    }).catch((e)=>{
+        console.log(e)
+    });
     event.preventDefault();
   }
 
