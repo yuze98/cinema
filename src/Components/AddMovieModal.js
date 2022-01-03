@@ -1,7 +1,9 @@
 import { Modal } from "react-onsenui";
 import { styles } from "../Styles/Styles";
 import { useEffect, useState } from "react";
-import MovieDB from "../Server/MovieDB";
+import AddMovieReq from "../Server/AddMovieReq";
+import Dropdown from "react-dropdown";
+import Calendar from "react-calendar";
 
 function AddMovieModal(props) {
   const [shown, setShown] = useState(props.isShown);
@@ -18,23 +20,45 @@ function AddMovieModal(props) {
     "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8af5e086459421.5d9a79cc7e3d5.jpg"
   );
   const [title, setTitle] = useState("");
+
+  const onChange = (val) => {
+    setDate(val);
+    console.log(val);
+  };
+  const StartTimes = ["12:00-15:00", "15:00-18:00", "18:00-21:00"];
+  const defaultOptions = StartTimes[0];
+  const ScreenOptions = ["1", "2"];
+  const defaultOptionsc = ScreenOptions[0];
+
+  function readFileDataAsBase64(e) {
+    const file = e.target.files[0];
+
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        resolve(event.target.result);
+      };
+
+      reader.onerror = (err) => {
+        reject(err);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
   function handlesubmit(event) {
-    alert("Movie Added!", date);
-    MovieDB.post("movie/", {
-      img: {},
+    const resp = AddMovieReq({
+      img: poster,
       title: title,
       room: screen,
       startTime: starts,
       endTime: ends,
       date: date,
-    })
-      .then((response) => {
-        console.log(response.status);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    event.preventDefault();
+    }).then((r) => {
+      console.log("this is the addmoviemodal", r);
+    });
+    alert("Movie Added!", resp);
   }
 
   return (
@@ -76,46 +100,37 @@ function AddMovieModal(props) {
               />
               <br />
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
-                Date:
+                Choose Date
+                <br />
+                <br />
+                <br />
+                <Calendar onChange={onChange} value={date} />
               </li>
-              <input
-                type="text"
-                name="Date"
-                value={date}
-                style={styles.AddMovieBox}
-                onChange={(event) => setDate(event.target.value)}
-              />
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
-                Starts at:
+                Choose Starting time:
+                <br />
+                <Dropdown
+                  options={StartTimes}
+                  value={defaultOptions}
+                  onChange={(e) => {
+                    setStarts(e.value.split("-"[0]));
+                    console.log(starts);
+                  }}
+                  placeholder="Start Time:"
+                />
+                PM
               </li>
-              <input
-                type="text"
-                name="Starts"
-                value={starts}
-                style={styles.AddMovieBox}
-                onChange={(event) => setStarts(event.target.value)}
-              />{" "}
-              PM
+
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
-                Ends at:
+                Choose Screen
               </li>
-              <input
-                type="text"
-                name="Ends"
-                value={ends}
-                style={styles.AddMovieBox}
-                onChange={(event) => setEnds(event.target.value)}
-              />{" "}
-              PM
-              <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
-                Screen:
-              </li>
-              <input
-                type="text"
-                name="Screen"
-                value={screen}
-                style={styles.AddMovieBox}
-                onChange={(event) => setScreen(event.target.value)}
+              <Dropdown
+                options={ScreenOptions}
+                value={defaultOptionsc}
+                onChange={(e) => {
+                  setScreen(e.value);
+                }}
+                placeholder="Choose Screen:"
               />
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
                 Title:
@@ -130,6 +145,12 @@ function AddMovieModal(props) {
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
                 Poster:
               </li>
+              <input
+                type="file"
+                onChange={async (e) => {
+                  setPoster(await readFileDataAsBase64(e));
+                }}
+              />
               <input
                 type="text"
                 name="Poster"

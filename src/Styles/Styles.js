@@ -124,4 +124,8 @@ export const styles = {
     fontWeight: "bold",
     marginTop: "-40%",
   },
+  dropdown:{
+    backgroundColor: 'red',
+    width:'100%'
+  },
 };

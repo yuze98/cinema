@@ -18,7 +18,6 @@ const location = useLocation()
   console.log(isManager);
 
   useEffect(() => {
-    //Promise.resolve(takes response)
     if (m) {
       MovieDB.get("/movie")
         .then((response) => {
