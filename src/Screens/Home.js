@@ -17,6 +17,7 @@ const location = useLocation()
   //const token = location.state.token
   console.log(isManager);
 
+
   useEffect(() => {
     if (m) {
       MovieDB.get("/movie")
@@ -39,7 +40,7 @@ const location = useLocation()
         <Poster
           mov={element}
           title={element.title}
-          image="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg"
+          image={element.img}
           isManager={isManager}
         />
       );

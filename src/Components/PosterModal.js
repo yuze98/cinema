@@ -12,9 +12,9 @@ function PosterModal(props) {
     console.log("inside useEffect", props.isShown);
     setShown(props.isShown);
   }, [props.isShown]);
-  const date = props.mov.date.split("T")[0]; //"17/12/2021";
-  const start = props.mov.startTime.split("T")[1].split(".")[0] + " PM";
-  const end = props.mov.endTime.split("T")[1].split(".")[0] + " PM";
+  const date = ''//props.mov!==undefined? props.mov.date.split("T")[0]:'null'; //"17/12/2021";
+  const start = ''//props.mov!==undefined?props.mov.startTime.split("T")[1].split(".")[0] + " PM":'null';
+  const end =  ''//props.mov!==undefined?props.mov.endTime.split("T")[1].split(".")[0] + " PM":'null';
   const Screeing_Room = "10C"; //props.mov.screen;
   const image = props.image;
   const title = props.title;

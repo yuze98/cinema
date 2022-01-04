@@ -6,6 +6,7 @@ import Dropdown from "react-dropdown";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "react-dropdown/style.css";
+import MovieDB from "../Server/MovieDB";
 
 function AddMovieModal(props) {
   const [shown, setShown] = useState(props.isShown);
@@ -49,10 +50,10 @@ function AddMovieModal(props) {
       reader.readAsDataURL(file);
     });
   }
-  function handlesubmit(event) {
+  async function gowebgo() {
 
-    console.log('data is:', poster,title,screen,starts[0],starts[1].split('PM')[0],date)
-     AddMovieReq({
+    console.log('data is:',title,screen,starts[0],starts[1].split('PM')[0],date)
+     await AddMovieReq({
       img: poster,
       title: title,
       room: screen,
@@ -66,6 +67,7 @@ function AddMovieModal(props) {
       console.log(e)
       console('ERR: ',e)
     });
+    
   }
 
   return (
@@ -81,7 +83,7 @@ function AddMovieModal(props) {
             display: "flex",
           }}
         >
-          <form onSubmit={() => handlesubmit()} style={{ paddingLeft: "30%" }}>
+          <form  style={{ paddingLeft: "30%" }}>
             <ul style={{ "list-style-type": "none" }}>
               <li
                 style={
@@ -164,7 +166,7 @@ function AddMovieModal(props) {
               <br />
               <br />
               <div style={{ flexDirection: "row" }}>
-                <input type="submit" value="Submit" style={styles.button} />
+                <input type="button" onClick={gowebgo} value="Submit" style={styles.button} />
 
                 <button
                   type="button"
