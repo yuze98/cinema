@@ -6,7 +6,6 @@ export default function Poster(props) {
   const image = props.image;
   const [isShown, setisShown] = useState(false);
 
-
   return (
     <div style={{ padding: 50 }}>
       <div>
