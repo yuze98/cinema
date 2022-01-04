@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import AddMovieReq from "../Server/AddMovieReq";
 import Dropdown from "react-dropdown";
 import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "react-dropdown/style.css";
 
 function AddMovieModal(props) {
   const [shown, setShown] = useState(props.isShown);
@@ -12,10 +14,10 @@ function AddMovieModal(props) {
     setShown(props.isShown);
   }, [props.isShown]);
   //const nav = useNavigate()
-  const [date, setDate] = useState("");
-  const [starts, setStarts] = useState("");
-  const [ends, setEnds] = useState("");
-  const [screen, setScreen] = useState("");
+  const [date, setDate] = useState(new Date());
+  const [starts, setStarts] = useState("12:00");
+  const [ends, setEnds] = useState("15:00");
+  const [screen, setScreen] = useState("1");
   const [poster, setPoster] = useState(
     "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8af5e086459421.5d9a79cc7e3d5.jpg"
   );
@@ -25,7 +27,7 @@ function AddMovieModal(props) {
     setDate(val);
     console.log(val);
   };
-  const StartTimes = ["12:00-15:00", "15:00-18:00", "18:00-21:00"];
+  const StartTimes = ["12:00-15:00 PM", "15:00-18:00 PM", "18:00-21:00 PM"];
   const defaultOptions = StartTimes[0];
   const ScreenOptions = ["1", "2"];
   const defaultOptionsc = ScreenOptions[0];
@@ -48,17 +50,22 @@ function AddMovieModal(props) {
     });
   }
   function handlesubmit(event) {
-    const resp = AddMovieReq({
+
+    console.log('data is:', poster,title,screen,starts[0],starts[1].split('PM')[0],date)
+     AddMovieReq({
       img: poster,
       title: title,
       room: screen,
-      startTime: starts,
-      endTime: ends,
+      startTime: starts[0],
+      endTime: starts[1].split('PM')[0],
       date: date,
     }).then((r) => {
       console.log("this is the addmoviemodal", r);
+      alert(title, " was Added!");
+    }).catch((e)=>{
+      console.log(e)
+      console('ERR: ',e)
     });
-    alert("Movie Added!", resp);
   }
 
   return (
@@ -103,35 +110,35 @@ function AddMovieModal(props) {
                 Choose Date
                 <br />
                 <br />
-                <br />
                 <Calendar onChange={onChange} value={date} />
               </li>
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
                 Choose Starting time:
                 <br />
+                <br />
                 <Dropdown
                   options={StartTimes}
                   value={defaultOptions}
                   onChange={(e) => {
-                    setStarts(e.value.split("-"[0]));
-                    console.log(starts);
+                    setStarts(e.value.split("-"));
                   }}
-                  placeholder="Start Time:"
+                  placeholder="Start Time PM:"
                 />
-                PM
               </li>
 
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
                 Choose Screen
+                <br />
+                <br />
+                <Dropdown
+                  options={ScreenOptions}
+                  value={defaultOptionsc}
+                  onChange={(e) => {
+                    setScreen(e.value);
+                  }}
+                  placeholder="Choose Screen:"
+                />
               </li>
-              <Dropdown
-                options={ScreenOptions}
-                value={defaultOptionsc}
-                onChange={(e) => {
-                  setScreen(e.value);
-                }}
-                placeholder="Choose Screen:"
-              />
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
                 Title:
               </li>
@@ -151,13 +158,7 @@ function AddMovieModal(props) {
                   setPoster(await readFileDataAsBase64(e));
                 }}
               />
-              <input
-                type="text"
-                name="Poster"
-                value={poster}
-                style={styles.AddMovieBox}
-                onChange={(event) => setPoster(event.target.value)}
-              />
+
               <br />
               <br />
               <br />
