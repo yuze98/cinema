@@ -19,6 +19,7 @@ function PosterModal(props) {
   const image = props.image;
   const title = props.title;
   const isManager = props.isManager;
+  const id = props.mov._id
 
   return (
     <div>
@@ -122,6 +123,7 @@ function PosterModal(props) {
         </Modal>
       ) : (
         <UpdateMovieModal
+          id = {id}
           isShown={shown}
           date={date}
           starts={start}
