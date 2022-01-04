@@ -4,6 +4,7 @@ import Poster from "../Components/Poster";
 import {useState, useEffect} from "react"
 import GetMovie from "../Server/GetMovie";
 import { useLocation } from "react-router";
+import MovieDB from "../Server/MovieDB";
 const seatL = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0]; //dummy array for now, will be gotten via request
 
 export default function Reservation(props) {
@@ -11,15 +12,38 @@ export default function Reservation(props) {
   //array = GetMovie({id:110}) 
   const location = useLocation()
   const title = location.state.mov.title
-  const room = location.state.mov.room
-  console.log(array)
+  const [m, setm] = useState(true);
+  const [mov,setmov] = useState()
+  const [room,setRoom] = useState()
+  const [seats,setSeats] = useState([])
+  console.log("ha")
+
+  console.log(location.state.mov._id)
+  useEffect(() => {
+    if (m) {
+      MovieDB.get("/movie/" + location.state.mov._id)
+        .then((response) => {
+          setmov(response.data.data);
+          console.log(response.data.data)
+          setRoom(response.data.data.room)
+          setSeats(response.data.data.seats)
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+    if (m) {
+      setm(false);
+    }
+  }, [m]);
+  console.log(seats)
   return (
     <div>
       <ToolbarComp Place="Reservation"/>
       <div style={styles.bg}>
         
         <div style={styles.grid}>
-          <Seats seatt={seatL} />
+          <Seats seatt={seats} movid = {location.state.mov._id} />
  
         </div>
         <div style={styles.poster}>
@@ -27,7 +51,7 @@ export default function Reservation(props) {
           <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg" width="250" height="380"/>
         </div>
         <div style ={styles.info}>
-          <h1> Screen: {room}</h1>
+          <h1> Screen: {room} </h1>
         </div>
 
       </div>

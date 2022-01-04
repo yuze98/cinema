@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import MovieDB from '../Server/MovieDB'
+import {useEffect} from "react"
 export default function Seats(props) {
     const seats = []
     const [reserved,setReserved] = useState([])
@@ -21,13 +23,13 @@ export default function Seats(props) {
         if (e.target.style.background == 'rgb(255, 154, 60)')
         {
             e.target.style.background = 'grey'
-            const newReserved = reserved.filter((item) => item != e.target.id)
+            const newReserved = reserved.filter((item) => item != Number(e.target.id))
             setReserved(newReserved)
         }
         else
         {
             const newReserved = [...reserved]
-            newReserved.push(e.target.id)
+            newReserved.push(Number(e.target.id))
             setReserved(newReserved)
         }
         
@@ -51,9 +53,37 @@ export default function Seats(props) {
     }
     function handleClear (e) {
         setReserved([])
+
     }
     function handleReserve (e) {
         //send request here
+            console.log(props.movid)
+            
+            
+            console.log(reserved.map(i=>Number(i)))
+            /*MovieDB.get("/movie/" + props.movid)
+                .then((response) => {
+                  console.log(response.data.data)
+                  console.log()
+                  setReserved(response.data.data.seats)
+                  
+                }).catch((e) => {
+                  console.log(e);
+                });*/ //WILL BE NEEDED IN CASE WE WANT TO CHECK FOR CONCURRENT RESERVATIONS 
+              MovieDB.post("/reserve/" + props.movid, 
+              {
+                userID: "Ahmed",
+                seats: reserved
+              })
+                .then((response) => {
+                  console.log(response.data.data)
+                })
+                .catch((e) => {
+                  console.log(e);
+                });
+                
+                
+
         setReserved([])
 
     }
