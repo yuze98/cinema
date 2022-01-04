@@ -105,9 +105,28 @@ function AddMovieModal(props) {
                   margin: "auto",
                 }}
               />
+              <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
+                Title:
+              </li>
+              <input
+                type="text"
+                name="Title"
+                value={title}
+                style={styles.AddMovieBox}
+                onChange={(event) => setTitle(event.target.value)}
+              />
+              <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
+                Poster:
+              </li>
+              <input
+                type="file"
+                onChange={async (e) => {
+                  setPoster(await readFileDataAsBase64(e));
+                }}
+              />
               <br />
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
-                Choose Date
+                Choose Date:
                 <br />
                 <br />
                 <Calendar onChange={onChange} value={date} />
@@ -139,25 +158,7 @@ function AddMovieModal(props) {
                   placeholder="Choose Screen:"
                 />
               </li>
-              <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
-                Title:
-              </li>
-              <input
-                type="text"
-                name="Title"
-                value={title}
-                style={styles.AddMovieBox}
-                onChange={(event) => setTitle(event.target.value)}
-              />
-              <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
-                Poster:
-              </li>
-              <input
-                type="file"
-                onChange={async (e) => {
-                  setPoster(await readFileDataAsBase64(e));
-                }}
-              />
+              
 
               <br />
               <br />
