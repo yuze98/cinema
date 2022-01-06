@@ -89,7 +89,7 @@ export default function Home(props) {
         />
       );
     });
-    
+
   } else {
     movie.push(
       <h1
@@ -133,7 +133,7 @@ export default function Home(props) {
           </h2>
           <Dropdown
             options={reser}
-            value={reser[0]}
+            value={'Choose a film to cancel your reservation'}
             onChange={(e) => {
               setcancelr(e.value);
             }}

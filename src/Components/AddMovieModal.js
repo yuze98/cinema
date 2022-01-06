@@ -16,7 +16,7 @@ function AddMovieModal(props) {
   }, [props.isShown]);
   //const nav = useNavigate()
   const [date, setDate] = useState(new Date());
-  const [starts, setStarts] = useState("12:00");
+  const [starts, setStarts] = useState("12:00-15:00 PM");
   const [ends, setEnds] = useState("15:00");
   const [screen, setScreen] = useState("1");
   const [poster, setPoster] = useState(
@@ -71,7 +71,7 @@ function AddMovieModal(props) {
         console.log("this is the addmoviemodal", r);
         if(r !== undefined)
         {
-          alert(title, " was Added!");
+          alert(title+" was added successfully!");
         }
         setShown(false)
       })
@@ -150,7 +150,7 @@ function AddMovieModal(props) {
                 <br />
                 <Dropdown
                   options={StartTimes}
-                  value={defaultOptions}
+                  value={'Choose Time'}
                   onChange={(e) => {
                     setStarts(e.value.split("-"));
                   }}
@@ -164,7 +164,7 @@ function AddMovieModal(props) {
                 <br />
                 <Dropdown
                   options={ScreenOptions}
-                  value={defaultOptionsc}
+                  value={'Choose Screen'}
                   onChange={(e) => {
                     setScreen(e.value);
                   }}
