@@ -4,12 +4,12 @@ const AddMovieReq = async (props) => {
   const mov = {
     img: props.img,
     title: props.title,
-    room: props.screen,
-    startTime: props.starts,
-    endTime: props.ends,
+    room: props.room,
+    startTime: props.startTime,
+    endTime: props.endTime,
     date: props.date,
   };
- 
+ console.log(mov)
   return await MovieDB.post("/movie",mov)
     .then((response) => {
       console.log(response.data.status);

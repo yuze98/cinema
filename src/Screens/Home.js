@@ -10,7 +10,6 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import GetReservations from "../Server/GetReservations";
 import CancelReservations from "../Server/CancelReservations";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 export default function Home(props) {
   const [homeDet, setHomeDet] = useState(); //returns the Movie Details array
@@ -23,9 +22,11 @@ export default function Home(props) {
   const isManager = true; // location.state.isManager; // location.state.isManager
   //const token = location.state.token
   console.log(isManager);
+
   const movie = [];
   const reser = [];
   const ids = [];
+
   const fetchReservations = async (id) => {
     await GetReservations({ id: id })
       .then((r) => {
@@ -37,20 +38,21 @@ export default function Home(props) {
       });
   };
 
-  const CancelRes = async (id)=>{
-
-    const new_id = ids[reser.indexOf(id)]
-     console.log(new_id,id)
-    await CancelReservations({id:new_id}).then((s)=>{
-        console.log('cancel home: ',s)
-        if(s!==undefined){
-          alert('Reservation canceled successfully!')
-
+  const CancelRes = async (id) => {
+    const new_id = ids[reser.indexOf(id)];
+    console.log(new_id, id);
+    await CancelReservations({ id: new_id })
+      .then((s) => {
+        console.log("cancel home: ", s);
+        if (s !== undefined) {
+          alert("Reservation canceled successfully!");
         }
-    }).catch((e)=>{
-      console.log(e)
-    })
-  }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   useEffect(() => {
     if (m) {
       fetchReservations("khaled");
@@ -67,11 +69,10 @@ export default function Home(props) {
     }
   }, [m]);
 
-
   if (seats_title !== undefined) {
     seats_title.forEach((el) => {
       reser.push(el.title + ": " + el.seats);
-      ids.push(el._id)
+      ids.push(el._id);
     });
   } else {
     reser.push("You have No Reservations");
@@ -88,6 +89,7 @@ export default function Home(props) {
         />
       );
     });
+    
   } else {
     movie.push(
       <h1
@@ -118,24 +120,32 @@ export default function Home(props) {
         >
           Movie List
         </h1>
-        <div style={{padding:10}}>
-          
+        <div style={{ padding: 10 }}>
           <h2
-          style={{
-            fontSize: 25,
-            color: "Black",
-            opacity: 0.8,
-            fontWeight: "Roboto",
-          }}>
+            style={{
+              fontSize: 25,
+              color: "Black",
+              opacity: 0.8,
+              fontWeight: "Roboto",
+            }}
+          >
             Your Reservations
           </h2>
           <Dropdown
             options={reser}
             value={reser[0]}
-            onChange={(e) => {setcancelr(e.value)}}
+            onChange={(e) => {
+              setcancelr(e.value);
+            }}
             placeholder="Show reservations:"
           />
-          <button input='button' onClick={()=>{CancelRes(cancelr)}} style={styles.CancelButton}>
+          <button
+            input="button"
+            onClick={() => {
+              CancelRes(cancelr);
+            }}
+            style={styles.CancelButton}
+          >
             Cancel Reservation
           </button>
         </div>
