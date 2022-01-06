@@ -9,6 +9,7 @@ const AddMovieReq = async (props) => {
     endTime: props.ends,
     date: props.date,
   };
+ 
   return await MovieDB.post("/movie",mov)
     .then((response) => {
       console.log(response.data.status);

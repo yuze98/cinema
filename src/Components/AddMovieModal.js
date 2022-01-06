@@ -69,7 +69,11 @@ function AddMovieModal(props) {
     })
       .then((r) => {
         console.log("this is the addmoviemodal", r);
-        alert(title, " was Added!");
+        if(r !== undefined)
+        {
+          alert(title, " was Added!");
+        }
+        setShown(false)
       })
       .catch((e) => {
         console.log(e);

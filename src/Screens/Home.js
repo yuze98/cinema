@@ -9,32 +9,51 @@ import MovieDB from "../Server/MovieDB";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import GetReservations from "../Server/GetReservations";
+import CancelReservations from "../Server/CancelReservations";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 export default function Home(props) {
   const [homeDet, setHomeDet] = useState(); //returns the Movie Details array
   const location = useLocation();
   const [seats_title, setSeats_title] = useState();
+  const [cancelr, setcancelr] = useState();
   const nav = useNavigate();
   const [m, setm] = useState(true); //returns the Movie Details array
   //const location = useLocation();
   const isManager = true; // location.state.isManager; // location.state.isManager
   //const token = location.state.token
   console.log(isManager);
-
+  const movie = [];
+  const reser = [];
+  const ids = [];
   const fetchReservations = async (id) => {
-    await GetReservations({id:id})
+    await GetReservations({ id: id })
       .then((r) => {
         setSeats_title(r);
-        console.log('home:',r)
+        console.log("home:", r);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
+  const CancelRes = async (id)=>{
+
+    const new_id = ids[reser.indexOf(id)]
+     console.log(new_id,id)
+    await CancelReservations({id:new_id}).then((s)=>{
+        console.log('cancel home: ',s)
+        if(s!==undefined){
+          alert('Reservation canceled successfully!')
+
+        }
+    }).catch((e)=>{
+      console.log(e)
+    })
+  }
   useEffect(() => {
     if (m) {
-      fetchReservations('khaled');
+      fetchReservations("khaled");
       MovieDB.get("/movie")
         .then((response) => {
           setHomeDet(response.data.data);
@@ -48,23 +67,17 @@ export default function Home(props) {
     }
   }, [m]);
 
-  const movie = [];
-  const reser = [];
 
   if (seats_title !== undefined) {
-    seats_title.forEach((el)=>{
+    seats_title.forEach((el) => {
       reser.push(el.title + ": " + el.seats);
-    })
+      ids.push(el._id)
+    });
+  } else {
+    reser.push("You have No Reservations");
   }
-    else{
-      reser.push('You have No Reservations');
-    }
- 
-
- console.log(seats_title)
 
   if (homeDet !== undefined) {
-   
     homeDet.forEach((element) => {
       movie.push(
         <Poster
@@ -105,13 +118,26 @@ export default function Home(props) {
         >
           Movie List
         </h1>
-        <div>
+        <div style={{padding:10}}>
+          
+          <h2
+          style={{
+            fontSize: 25,
+            color: "Black",
+            opacity: 0.8,
+            fontWeight: "Roboto",
+          }}>
+            Your Reservations
+          </h2>
           <Dropdown
             options={reser}
             value={reser[0]}
-            onChange={(e) => {}}
+            onChange={(e) => {setcancelr(e.value)}}
             placeholder="Show reservations:"
           />
+          <button input='button' onClick={()=>{CancelRes(cancelr)}} style={styles.CancelButton}>
+            Cancel Reservation
+          </button>
         </div>
       </div>
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />

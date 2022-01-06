@@ -128,4 +128,16 @@ export const styles = {
     backgroundColor: 'red',
     width:'100%'
   },
+  CancelButton:{
+    color: "white",
+    backgroundColor: "#ff0000",
+    cursor: "pointer",
+    opacity: 0.8,
+    borderColor: "#ff0066",
+    height: 50,
+    width: 200,
+    fontSize: 20,
+    marginTop: 10,
+
+  }
 };
