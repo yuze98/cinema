@@ -29,9 +29,7 @@ function AddMovieModal(props) {
     console.log(val);
   };
   const StartTimes = ["12:00-15:00 PM", "15:00-18:00 PM", "18:00-21:00 PM"];
-  const defaultOptions = StartTimes[0];
   const ScreenOptions = ["1", "2"];
-  const defaultOptionsc = ScreenOptions[0];
 
   function readFileDataAsBase64(e) {
     const file = e.target.files[0];
@@ -77,6 +75,7 @@ function AddMovieModal(props) {
       })
       .catch((e) => {
         console.log(e);
+        alert('This slot is taken!');
         console("ERR: ", e);
       });
   }
