@@ -2,14 +2,12 @@ import Seats from "../Components/Seats";
 import ToolbarComp from "../Components/Toolbar";
 import Poster from "../Components/Poster";
 import {useState, useEffect} from "react"
-import GetMovie from "../Server/GetMovie";
 import { useLocation } from "react-router";
 import MovieDB from "../Server/MovieDB";
 const seatL = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0]; //dummy array for now, will be gotten via request
 
 export default function Reservation(props) {
   var array = [{}]
-  //array = GetMovie({id:110}) 
   const location = useLocation()
   const title = location.state.mov.title
   const [m, setm] = useState(true);

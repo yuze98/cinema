@@ -3,23 +3,38 @@ import "onsenui/css/onsen-css-components.css";
 import ToolbarComp from "../Components/Toolbar";
 import Poster from "../Components/Poster";
 import AddMovie from "../Components/AddMovie";
-import GetHome from "../Server/GetHome";
 import { styles } from "../Styles/Styles";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MovieDB from "../Server/MovieDB";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import GetReservations from "../Server/GetReservations";
 
 export default function Home(props) {
   const [homeDet, setHomeDet] = useState(); //returns the Movie Details array
-const location = useLocation()
+  const location = useLocation();
+  const [seats_title, setSeats_title] = useState();
+  const nav = useNavigate();
   const [m, setm] = useState(true); //returns the Movie Details array
   //const location = useLocation();
-  const isManager =true// location.state.isManager; // location.state.isManager
+  const isManager = true; // location.state.isManager; // location.state.isManager
   //const token = location.state.token
   console.log(isManager);
 
+  const fetchReservations = async (id) => {
+    await GetReservations({id:id})
+      .then((r) => {
+        setSeats_title(r);
+        console.log('home:',r)
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   useEffect(() => {
     if (m) {
+      fetchReservations('khaled');
       MovieDB.get("/movie")
         .then((response) => {
           setHomeDet(response.data.data);
@@ -34,7 +49,22 @@ const location = useLocation()
   }, [m]);
 
   const movie = [];
+  const reser = [];
+
+  if (seats_title !== undefined) {
+    seats_title.forEach((el)=>{
+      reser.push(el.title + ": " + el.seats);
+    })
+  }
+    else{
+      reser.push('You have No Reservations');
+    }
+ 
+
+ console.log(seats_title)
+
   if (homeDet !== undefined) {
+   
     homeDet.forEach((element) => {
       movie.push(
         <Poster
@@ -75,6 +105,14 @@ const location = useLocation()
         >
           Movie List
         </h1>
+        <div>
+          <Dropdown
+            options={reser}
+            value={reser[0]}
+            onChange={(e) => {}}
+            placeholder="Show reservations:"
+          />
+        </div>
       </div>
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>

@@ -73,6 +73,7 @@ function PosterModal(props) {
               <div>
                 <button
                   input="button"
+                  style={{backgroundColor: 'transparent',}}
                   onClick={() => {
                     nav("/Reservation", { state: { mov: props.mov } });
                   }}

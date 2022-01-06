@@ -51,23 +51,30 @@ function AddMovieModal(props) {
     });
   }
   async function gowebgo() {
-
-    console.log('data is:',title,screen,starts[0],starts[1].split('PM')[0],date)
-     await AddMovieReq({
+    console.log(
+      "data is:",
+      title,
+      screen,
+      starts[0],
+      starts[1].split("PM")[0],
+      date
+    );
+    await AddMovieReq({
       img: poster,
       title: title,
       room: screen,
       startTime: starts[0],
-      endTime: starts[1].split('PM')[0],
+      endTime: starts[1].split("PM")[0],
       date: date,
-    }).then((r) => {
-      console.log("this is the addmoviemodal", r);
-      alert(title, " was Added!");
-    }).catch((e)=>{
-      console.log(e)
-      console('ERR: ',e)
-    });
-    
+    })
+      .then((r) => {
+        console.log("this is the addmoviemodal", r);
+        alert(title, " was Added!");
+      })
+      .catch((e) => {
+        console.log(e);
+        console("ERR: ", e);
+      });
   }
 
   return (
@@ -83,7 +90,7 @@ function AddMovieModal(props) {
             display: "flex",
           }}
         >
-          <form  style={{ paddingLeft: "30%" }}>
+          <form style={{ paddingLeft: "30%" }}>
             <ul style={{ "list-style-type": "none" }}>
               <li
                 style={
@@ -160,13 +167,17 @@ function AddMovieModal(props) {
                   placeholder="Choose Screen:"
                 />
               </li>
-              
 
               <br />
               <br />
               <br />
               <div style={{ flexDirection: "row" }}>
-                <input type="button" onClick={gowebgo} value="Submit" style={styles.button} />
+                <input
+                  type="button"
+                  onClick={gowebgo}
+                  value="Submit"
+                  style={styles.button}
+                />
 
                 <button
                   type="button"
