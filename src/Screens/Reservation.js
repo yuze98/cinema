@@ -14,6 +14,7 @@ export default function Reservation(props) {
   const [mov,setmov] = useState()
   const [room,setRoom] = useState()
   const [seats,setSeats] = useState([])
+  const isManager = location.state.isManager
   console.log("ha")
 
   console.log(location.state.mov._id)
@@ -42,7 +43,7 @@ export default function Reservation(props) {
       <div style={styles.bg}>
         
         <div style={styles.grid}>
-          <Seats seatt={seats} movid = {location.state.mov._id} />
+          <Seats seatt={seats} movid = {location.state.mov._id} isManager = {isManager}/>
  
         </div>
         <div style={styles.poster}>
