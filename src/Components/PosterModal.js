@@ -12,15 +12,14 @@ function PosterModal(props) {
     console.log("inside useEffect", props.isShown);
     setShown(props.isShown);
   }, [props.isShown]);
-  const date = ''//props.mov!==undefined? props.mov.date.split("T")[0]:'null'; //"17/12/2021";
-  const start = ''//props.mov!==undefined?props.mov.startTime.split("T")[1].split(".")[0] + " PM":'null';
-  const end =  ''//props.mov!==undefined?props.mov.endTime.split("T")[1].split(".")[0] + " PM":'null';
-  const Screeing_Room = "10C"; //props.mov.screen;
+  const date = props.mov!==undefined? props.mov.startTime.split("T")[0]:'null'; //"17/12/2021";
+  const start = props.mov!==undefined?new Date(props.mov.startTime).getHours()+':00 PM':'0';
+  const end =  props.mov!==undefined?new Date(props.mov.endTime).getHours()+':00 PM':'0';
+  const Screeing_Room =  props.mov!==undefined ? props.mov.room:'10';
   const image = props.image;
   const title = props.title;
   const isManager = props.isManager;
   const id = props.mov._id
-
   return (
     <div>
       {!update ? (
@@ -73,9 +72,13 @@ function PosterModal(props) {
               <div>
                 <button
                   input="button"
-                  style={{backgroundColor: 'transparent',}}
+                  style={{backgroundColor: 'transparent',borderColor: 'transparent',}}
                   onClick={() => {
-                    nav("/Reservation", { state: { mov: props.mov } });
+                    nav("/Reservation", { state: { mov: props.mov ,isManager: isManager,
+                    date:date,
+                    start:start, 
+                    end:end,                
+                    } });
                   }}
                 >
                   <img
@@ -97,18 +100,22 @@ function PosterModal(props) {
                     <p1>Update Movie</p1>
                   </button>
                 ) : null}
-                <a href="/Reservation">
+              
                   <button
                     type="button"
                     style={styles.modalbtn}
                     onClick={() => {
                       setShown(false);
-                      nav("/Reservation", { state: { mov: props.mov } });
+                      nav("/Reservation", { state: { mov: props.mov,isManager: isManager,
+                        date:date,
+                        start:start, 
+                        end:end,
+                      } });
                     }}
                   >
                     <p1>Get Ticket</p1>
                   </button>
-                </a>
+               
                 <button
                   type="button"
                   style={styles.modalbtn}

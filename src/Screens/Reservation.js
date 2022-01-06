@@ -25,6 +25,7 @@ export default function Reservation(props) {
           console.log(response.data.data)
           setRoom(response.data.data.room)
           setSeats(response.data.data.seats)
+         
         })
         .catch((e) => {
           console.log(e);
@@ -46,7 +47,16 @@ export default function Reservation(props) {
         </div>
         <div style={styles.poster}>
           <h1>{title}</h1>
-          <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg" width="250" height="380"/>
+          <img src={location.state.mov.img} width="250" height="380"/>
+        </div>
+        <div style ={styles.info}>
+          <h1> Date: {location.state.date} </h1>
+        </div>
+        <div style ={styles.info}>
+          <h1> Starts at: {location.state.start} </h1>
+        </div>
+        <div style ={styles.info}>
+          <h1> Ends at: {location.state.end} </h1>
         </div>
         <div style ={styles.info}>
           <h1> Screen: {room} </h1>

@@ -20,6 +20,7 @@ export default function Home(props) {
   const [m, setm] = useState(true); //returns the Movie Details array
   //const location = useLocation();
   const isManager = true; // location.state.isManager; // location.state.isManager
+  //const user = location.state.id
   //const token = location.state.token
   console.log(isManager);
 
@@ -46,6 +47,11 @@ export default function Home(props) {
         console.log("cancel home: ", s);
         if (s !== undefined) {
           alert("Reservation canceled successfully!");
+          reser.splice(reser.indexOf(id), 1);
+          ids.splice(reser.indexOf(id), 1);        }
+        else{
+          alert("Sorry there was an error :(!");
+
         }
       })
       .catch((e) => {

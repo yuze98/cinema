@@ -4,6 +4,7 @@ import {useEffect} from "react"
 export default function Seats(props) {
     const seats = []
     const [reserved,setReserved] = useState([])
+    const id = 'khaled'
     var count = 0
     function handleHover (e) {
         console.log(e.target.style.background)
@@ -73,7 +74,7 @@ export default function Seats(props) {
                 });*/ //WILL BE NEEDED IN CASE WE WANT TO CHECK FOR CONCURRENT RESERVATIONS 
               MovieDB.post("/reserve/" + props.movid, 
               {
-                userID: "Ahmed",
+                userID: id,
                 seats: reserved
               })
                 .then((response) => {
