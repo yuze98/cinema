@@ -9,7 +9,16 @@ export default function Poster(props) {
   return (
     <div style={{ padding: 50 }}>
       <div>
-      <PosterModal mov = {props.mov} isShown={isShown} title={props.title} image={props.image} isManager={props.isManager}/>
+        <PosterModal
+          mov={props.mov}
+          isShown={isShown}
+          title={props.title}
+          image={props.image}
+          isManager={props.isManager}
+          userId={props.userId}
+          token={props.token}
+          name={props.name}
+        />
       </div>
       <div style={{ textAlign: "center" }}>
         <h2>{title}</h2>
@@ -19,7 +28,6 @@ export default function Poster(props) {
           type="button"
           style={styles.poster_button}
           onClick={() => {
-            
             setisShown(!isShown);
             console.log(isShown);
           }}

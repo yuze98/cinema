@@ -3,7 +3,12 @@ import MovieDB from './MovieDB';
 
 const GetReservations = async (props)=> {
 
-    return await MovieDB.get('/reserve/'+props.id).then((response) => {
+  let config = {
+    headers: 
+      {Authorization: 'Bearer '+props.token}
+    
+  }
+    return await MovieDB.get('/reserve/'+props.id,config).then((response) => {
       console.log(response.data)
       return(response.data.data.reservations);
     }).catch((e)=>{

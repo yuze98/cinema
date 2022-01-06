@@ -2,21 +2,30 @@ import Seats from "../Components/Seats";
 import ToolbarComp from "../Components/Toolbar";
 import Poster from "../Components/Poster";
 import {useState, useEffect} from "react"
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import MovieDB from "../Server/MovieDB";
 const seatL = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0]; //dummy array for now, will be gotten via request
 
 export default function Reservation(props) {
   var array = [{}]
   const location = useLocation()
+  const nav = useNavigate()
   const title = location.state.mov.title
   const [m, setm] = useState(true);
   const [mov,setmov] = useState()
   const [room,setRoom] = useState()
   const [seats,setSeats] = useState([])
-  const isManager = location.state.isManager
+  const isManager = location.state!==null?location.state.isManager:false;
+  const token = location.state!==null?location.state.token:'';
+  const userId = location.state!==null?location.state.userId:'';
   console.log("ha")
 
+  const logout = ()=>{
+    token = null
+    userId = ''
+    isManager=false
+    nav('/login')
+  }
   console.log(location.state.mov._id)
   useEffect(() => {
     if (m) {
@@ -25,8 +34,7 @@ export default function Reservation(props) {
           setmov(response.data.data);
           console.log(response.data.data)
           setRoom(response.data.data.room)
-          setSeats(response.data.data.seats)
-         
+          setSeats(response.data.data.seats)      
         })
         .catch((e) => {
           console.log(e);
@@ -39,11 +47,11 @@ export default function Reservation(props) {
   console.log(seats)
   return (
     <div>
-      <ToolbarComp Place="Reservation"/>
+      <ToolbarComp Place="Reservation" logout={logout} token={token} name= {props.name}/>
       <div style={styles.bg}>
         
         <div style={styles.grid}>
-          <Seats seatt={seats} movid = {location.state.mov._id} isManager = {isManager}/>
+          <Seats seatt={seats} movid = {location.state.mov._id} isManager = {isManager} token={token} userId={userId}/>
  
         </div>
         <div style={styles.poster}>
@@ -87,9 +95,8 @@ const styles = {
     textAlign: "center"
   },
   info: {
-    position: "absolute",
-    left: "80%",
-    top: "30%",
-    textAlign: "center"
+    textAlign: "right",
+    marginRight: '10%',
+    margin: '5%',
   },
 };

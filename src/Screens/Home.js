@@ -18,18 +18,26 @@ export default function Home(props) {
   const [cancelr, setcancelr] = useState();
   const nav = useNavigate();
   const [m, setm] = useState(true); //returns the Movie Details array
-  //const location = useLocation();
-  const isManager = true; // location.state.isManager; // location.state.isManager
-  //const user = location.state.id
-  //const token = location.state.token
+   const isManager = location.state!==null? location.state.isManager:false; // location.state.isManager
+  console.log(location.state)
+  const userId = location.state!== null? location.state.id:'';
+  const token = location.state!== null?location.state.token:null
+  const name = location.state!== null?location.state.name:'Sa3d el Dally'
   console.log(isManager);
 
   const movie = [];
   const reser = [];
   const ids = [];
 
-  const fetchReservations = async (id) => {
-    await GetReservations({ id: id })
+  const logout = ()=>{
+    token = null
+    userId = ''
+    name = 'Sa3d el Dally'
+    isManager=false
+    nav('/login')
+  }
+  const fetchReservations = async () => {
+    await GetReservations({ id:userId, token:token})
       .then((r) => {
         setSeats_title(r);
         console.log("home:", r);
@@ -42,7 +50,7 @@ export default function Home(props) {
   const CancelRes = async (id) => {
     const new_id = ids[reser.indexOf(id)];
     console.log(new_id, id);
-    await CancelReservations({ id: new_id })
+    await CancelReservations({ id: new_id, token:token })
       .then((s) => {
         console.log("cancel home: ", s);
         if (s !== undefined) {
@@ -61,7 +69,7 @@ export default function Home(props) {
 
   useEffect(() => {
     if (m) {
-      fetchReservations("khaled");
+      fetchReservations();
       MovieDB.get("/movie")
         .then((response) => {
           setHomeDet(response.data.data);
@@ -92,6 +100,9 @@ export default function Home(props) {
           title={element.title}
           image={element.img}
           isManager={isManager}
+          userId={userId}
+          token={token}
+          name={name}
         />
       );
     });
@@ -113,7 +124,7 @@ export default function Home(props) {
         height: "100%",
       }}
     >
-      <ToolbarComp Place="Home" />
+      <ToolbarComp Place="Home" logout={logout} token={token} name={name}/>
       <div>
         <h1
           style={{
@@ -126,13 +137,14 @@ export default function Home(props) {
         >
           Movie List
         </h1>
-        <div style={{ padding: 10 }}>
+        {token!==null?!isManager?(<div style={{ padding: 10, textAlign:'center',}}>
           <h2
             style={{
               fontSize: 25,
               color: "Black",
               opacity: 0.8,
               fontWeight: "Roboto",
+              
             }}
           >
             Your Reservations
@@ -154,7 +166,15 @@ export default function Home(props) {
           >
             Cancel Reservation
           </button>
-        </div>
+        </div>):<h1 style={{fontSize: 30,
+              color: "#c01100",
+              opacity: 0.8,
+              fontWeight: "Roboto",
+              textAlign:'center'}}>Manager Overview</h1>:<h1 style={{fontSize: 30,
+                color: "#000001",
+                opacity: 0.8,
+                fontWeight: "Roboto",
+                textAlign:'center'}}>Guest Overview</h1>}
       </div>
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>

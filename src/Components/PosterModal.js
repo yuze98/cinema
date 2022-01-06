@@ -12,14 +12,21 @@ function PosterModal(props) {
     console.log("inside useEffect", props.isShown);
     setShown(props.isShown);
   }, [props.isShown]);
-  const date = props.mov!==undefined? props.mov.startTime.split("T")[0]:'null'; //"17/12/2021";
-  const start = props.mov!==undefined?new Date(props.mov.startTime).getHours()+':00 PM':'0';
-  const end =  props.mov!==undefined?new Date(props.mov.endTime).getHours()+':00 PM':'0';
-  const Screeing_Room =  props.mov!==undefined ? props.mov.room:'10';
+  const date =
+    props.mov !== undefined ? props.mov.startTime.split("T")[0] : "null"; //"17/12/2021";
+  const start =
+    props.mov !== undefined
+      ? new Date(props.mov.startTime).getHours() + ":00 PM"
+      : "0";
+  const end =
+    props.mov !== undefined
+      ? new Date(props.mov.endTime).getHours() + ":00 PM"
+      : "0";
+  const Screeing_Room = props.mov !== undefined ? props.mov.room : "10";
   const image = props.image;
   const title = props.title;
   const isManager = props.isManager;
-  const id = props.mov._id
+  const id = props.mov._id;
   return (
     <div>
       {!update ? (
@@ -72,13 +79,24 @@ function PosterModal(props) {
               <div>
                 <button
                   input="button"
-                  style={{backgroundColor: 'transparent',borderColor: 'transparent',}}
+                  style={{
+                    backgroundColor: "transparent",
+                    borderColor: "transparent",
+                  }}
                   onClick={() => {
-                    nav("/Reservation", { state: { mov: props.mov ,isManager: isManager,
-                    date:date,
-                    start:start, 
-                    end:end,                
-                    } });
+                    nav("/Reservation", {
+                      state: {
+                        mov: props.mov,
+                        isManager: isManager,
+                        date: date,
+                        start: start,
+                        end: end,
+                        userId: props.userId,
+                        token: props.token,
+                        name:props.name
+
+                      },
+                    });
                   }}
                 >
                   <img
@@ -100,22 +118,30 @@ function PosterModal(props) {
                     <p1>Update Movie</p1>
                   </button>
                 ) : null}
-              
-                  <button
-                    type="button"
-                    style={styles.modalbtn}
-                    onClick={() => {
-                      setShown(false);
-                      nav("/Reservation", { state: { mov: props.mov,isManager: isManager,
-                        date:date,
-                        start:start, 
-                        end:end,
-                      } });
-                    }}
-                  >
-                    <p1>Get Ticket</p1>
-                  </button>
-               
+
+                <button
+                  type="button"
+                  style={styles.modalbtn}
+                  onClick={() => {
+                    setShown(false);
+                    nav("/Reservation", {
+                      state: {
+                        mov: props.mov,
+                        isManager: isManager,
+                        date: date,
+                        start: start,
+                        end: end,
+                        userId: props.userId,
+                        token: props.token,
+                        name:props.name
+
+                      },
+                    });
+                  }}
+                >
+                  <p1>Get Ticket</p1>
+                </button>
+
                 <button
                   type="button"
                   style={styles.modalbtn}
@@ -131,7 +157,7 @@ function PosterModal(props) {
         </Modal>
       ) : (
         <UpdateMovieModal
-          id = {id}
+          id={id}
           isShown={shown}
           date={date}
           starts={start}

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import MovieDB from "../Server/MovieDB";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Seats(props) {
   const seats = [];
   const [reserved, setReserved] = useState([]);
   const id = "khaled";
   var count = 0;
   const isManager = props.isManager;
+  const nav = useNavigate()
   function handleHover(e) {
     console.log(e.target.style.background);
     if (
@@ -66,6 +68,14 @@ export default function Seats(props) {
   function handleReserve(e) {
     //send request here
     console.log(props.movid);
+    if(props.token==null)
+    {
+      alert('You need to login first!!!!!!')
+      nav('/login')
+    }
+    else{
+     
+    
 
     console.log(reserved.map((i) => Number(i)));
     /*MovieDB.get("/movie/" + props.movid)
@@ -77,10 +87,18 @@ export default function Seats(props) {
                 }).catch((e) => {
                   console.log(e);
                 });*/ //WILL BE NEEDED IN CASE WE WANT TO CHECK FOR CONCURRENT RESERVATIONS
-    MovieDB.post("/reserve/" + props.movid, {
-      userID: id,
-      seats: reserved,
-    })
+    MovieDB.post(
+      "/reserve/" + props.movid,
+      {
+        userID: id,
+        seats: reserved,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + props.token,
+        },
+      }
+    )
       .then((response) => {
         console.log(response.data.data);
         alert(
@@ -92,6 +110,7 @@ export default function Seats(props) {
       });
 
     setReserved([]);
+    }
   }
   console.log(reserved);
   return (
@@ -110,7 +129,12 @@ export default function Seats(props) {
             Clear Selected Seats
           </button>
         </div>
-      ) : <div style={{textAlign:'center',}}> <h1>Seats overview</h1></div> }
+      ) : (
+        <div style={{ textAlign: "center" }}>
+          {" "}
+          <h1>Seats overview</h1>
+        </div>
+      )}
     </div>
   );
 }
