@@ -17,7 +17,6 @@ const UpdateMovieReq = async (props) => {
     })
     .catch((e) => {
       console.log(e);
-      return;
     });
 };
 

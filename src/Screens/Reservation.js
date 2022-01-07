@@ -18,6 +18,7 @@ export default function Reservation(props) {
   const isManager = location.state!==null?location.state.isManager:false;
   const token = location.state!==null?location.state.token:'';
   const userId = location.state!==null?location.state.userId:'';
+  const name = location.state!==null?location.state.name:'';
   console.log("ha")
 
   const logout = ()=>{
@@ -47,7 +48,7 @@ export default function Reservation(props) {
   console.log(seats)
   return (
     <div>
-      <ToolbarComp Place="Reservation" logout={logout} token={token} name= {props.name}/>
+      <ToolbarComp Place="Reservation" logout={logout} token={token} name= {name} isManager = {isManager}/>
       <div style={styles.bg}>
         
         <div style={styles.grid}>

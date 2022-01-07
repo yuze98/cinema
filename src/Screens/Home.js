@@ -18,7 +18,7 @@ export default function Home(props) {
   const [cancelr, setcancelr] = useState();
   const nav = useNavigate();
   const [m, setm] = useState(true); //returns the Movie Details array
-   const isManager = location.state!==null? location.state.isManager:false; // location.state.isManager
+  const isManager = location.state!==null? location.state.isManager:false; // location.state.isManager
   console.log(location.state)
   const userId = location.state!== null? location.state.id:'';
   const token = location.state!== null?location.state.token:null
@@ -124,7 +124,7 @@ export default function Home(props) {
         height: "100%",
       }}
     >
-      <ToolbarComp Place="Home" logout={logout} token={token} name={name}/>
+      <ToolbarComp Place="Home" logout={logout} token={token} name={name} isManager={isManager}/>
       <div>
         <h1
           style={{

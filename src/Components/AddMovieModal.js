@@ -16,11 +16,13 @@ function AddMovieModal(props) {
   }, [props.isShown]);
   //const nav = useNavigate()
   const [date, setDate] = useState(new Date());
-  const [starts, setStarts] = useState("12:00-15:00 PM");
-  const [ends, setEnds] = useState("15:00");
+  const [starts, setStarts] = useState('');
+  const [ends, setEnds] = useState('');
+  const [preview, setpreview] = useState(
+    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8af5e086459421.5d9a79cc7e3d5.jpg"
+  );
   const [screen, setScreen] = useState("1");
   const [poster, setPoster] = useState(
-    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8af5e086459421.5d9a79cc7e3d5.jpg"
   );
   const [title, setTitle] = useState("");
 
@@ -67,19 +69,61 @@ function AddMovieModal(props) {
     })
       .then((r) => {
         console.log("this is the addmoviemodal", r);
-        if(r !== undefined)
-        {
-          alert(title+" was added successfully!");
+        if (r !== undefined) {
+          alert(title + " was added successfully!");
         }
-        setShown(false)
+        setShown(false);
       })
       .catch((e) => {
         console.log(e);
-        alert('This slot is taken!');
+        alert("This slot is taken!");
         console("ERR: ", e);
       });
   }
 
+  //Function to help Resizing the image if it was uploaded from the user using sharp pkg
+
+  function ResizeImg(base64img, maxWidth, maxHeight) {
+    return new Promise((resolve) => {
+      let img = new Image();
+      img.src = base64img;
+      img.onload = () => {
+        let canvas = document.createElement("canvas");
+        const MAX_WIDTH = maxWidth;
+        const MAX_HEIGHT = maxHeight;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL());
+      };
+    });
+  }
+
+   function resizeImage(img) {
+    return ResizeImg(img, 170, 300)
+      .then((p) => {
+        console.log("new enc", p);
+        return p;
+      })
+      .catch((e) => {
+        console.log("resize error", e);
+      }); // resize to 10x10
+  }
   return (
     <Modal isOpen={shown} animation="fade">
       <div style={{ margin: "auto" }}>
@@ -133,9 +177,22 @@ function AddMovieModal(props) {
               <input
                 type="file"
                 onChange={async (e) => {
-                  setPoster(await readFileDataAsBase64(e));
+                  const p = await readFileDataAsBase64(e);
+                  setPoster(await resizeImage(p));
+                  setpreview(p);
                 }}
               />
+              <br />
+              <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
+                OR you can Add Poster's URL:
+              </li>
+              <input
+                input="text"
+                onChange={(e) => {
+                  setPoster(e.target.value);
+                }}
+              />
+
               <br />
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
                 Choose Date:
@@ -149,7 +206,7 @@ function AddMovieModal(props) {
                 <br />
                 <Dropdown
                   options={StartTimes}
-                  value={'Choose Time'}
+                  value={"Choose Time"}
                   onChange={(e) => {
                     setStarts(e.value.split("-"));
                   }}
@@ -163,7 +220,7 @@ function AddMovieModal(props) {
                 <br />
                 <Dropdown
                   options={ScreenOptions}
-                  value={'Choose Screen'}
+                  value={"Choose Screen"}
                   onChange={(e) => {
                     setScreen(e.value);
                   }}
@@ -203,7 +260,7 @@ function AddMovieModal(props) {
               <img
                 alt="Movie Poster"
                 style={{ width: 250, height: 380, paddingLeft: 50 }}
-                src={poster}
+                src={preview}
               />
             </div>
           </div>

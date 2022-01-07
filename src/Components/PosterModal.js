@@ -3,6 +3,7 @@ import { styles } from "../Styles/Styles";
 import { useEffect, useState } from "react";
 import UpdateMovieModal from "./UpdateMovie";
 import { useNavigate } from "react-router";
+import DeleteMovie from "../Server/DeleteMovie";
 function PosterModal(props) {
   const [shown, setShown] = useState(props.isShown);
   const [update, setUpdate] = useState(false);
@@ -27,6 +28,19 @@ function PosterModal(props) {
   const title = props.title;
   const isManager = props.isManager;
   const id = props.mov._id;
+
+
+  //Delete movie
+  const Delete = ()=>{
+
+    DeleteMovie({id:id}).then((s)=>{
+      console.log(s)
+      alert('movie deleted')
+    }).catch((e)=>{
+      console.log(e)
+      alert('Oh no, there was a problem!')
+    })
+  }
   return (
     <div>
       {!update ? (
@@ -108,6 +122,7 @@ function PosterModal(props) {
               </div>
               <div style={{ flexDirection: "row", marginTop: 100 }}>
                 {isManager ? (
+                  <div>
                   <button
                     type="button"
                     style={styles.modalbtn}
@@ -117,6 +132,14 @@ function PosterModal(props) {
                   >
                     <p1>Update Movie</p1>
                   </button>
+                  <button
+                  type="button"
+                  style={styles.CancelButton}
+                  onClick={Delete}
+                >
+                  <p1>Delete Movie</p1>
+                </button>
+                </div>
                 ) : null}
 
                 <button

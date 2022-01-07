@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import ToolbarComp from "../Components/Toolbar";
+import RegisterREQ from "../Server/RegisterREQ";
 import { styles } from "../Styles/Styles";
 
 //TODO: STYLING
@@ -13,8 +15,30 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [role, setRole] = useState('customer');
     const [validationState, setValidationState] = useState('');
-
+    const nav = useNavigate()
     //A HANDLER FOR THE REGISTER BUTTON
+
+
+    const Registering = () =>{
+        RegisterREQ({
+            username:username,
+            firstName:firstName,
+            lastName:lastName,
+            email:email,
+            password:password,
+            role:role,
+        }).then((r)=>{
+            
+            if(r!==undefined){
+                alert('Account created successfully')
+                nav('/login')
+            }
+            else{
+                alert('Account created successfully not!')
+            }
+        })
+    }
+
     const handleRegister = (e) => {
         var regEx = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
         if (password.length <= 8)
@@ -33,6 +57,7 @@ const Signup = () => {
         {
             setValidationState('Account created successfully !');
             //TODO: BACKEND REQUEST
+            Registering()
         }
         e.preventDefault();
     }
