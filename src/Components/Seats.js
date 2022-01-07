@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Seats(props) {
   const seats = [];
   const [reserved, setReserved] = useState([]);
-  const id = "khaled";
+  const userId = props.userId;
   var count = 0;
   const isManager = props.isManager;
   const nav = useNavigate()
@@ -90,7 +90,7 @@ export default function Seats(props) {
     MovieDB.post(
       "/reserve/" + props.movid,
       {
-        userID: id,
+        userID: userId,
         seats: reserved,
       },
       {

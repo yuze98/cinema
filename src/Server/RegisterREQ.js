@@ -13,7 +13,7 @@ const RegisterREQ = async (props)=> {
       role:props.role,
     }
     console.log('data sent is: ',user)
-  await MovieDB.post("/sign-up", user)
+  return await MovieDB.post("/sign-up", user)
   .then((response) => {
     console.log(response.data);
     return response.data.status

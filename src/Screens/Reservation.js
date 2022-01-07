@@ -48,7 +48,7 @@ export default function Reservation(props) {
   console.log(seats)
   return (
     <div>
-      <ToolbarComp Place="Reservation" logout={logout} token={token} name= {name} isManager = {isManager}/>
+      <ToolbarComp Place="Reservation" logout={logout} token={token} name= {name} isManager = {isManager} userId={userId}/>
       <div style={styles.bg}>
         
         <div style={styles.grid}>

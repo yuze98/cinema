@@ -2,7 +2,7 @@ import { Toolbar } from "react-onsenui";
 import { useNavigate } from "react-router";
 import { styles } from "../Styles/Styles";
 export default function ToolbarComp(props) {
-  const nav = useNavigate()
+  const nav = useNavigate();
   return (
     <Toolbar
       style={{
@@ -13,9 +13,21 @@ export default function ToolbarComp(props) {
       }}
     >
       <div className="left">
-        
-          <button style={styles.button} onClick={()=>{nav('/',{state:{name: props.name,token:props.token, isManager:props.isManager}})}}>Home</button>
-        
+        <button
+          style={styles.button}
+          onClick={() => {
+            nav("/", {
+              state: {
+                name: props.name,
+                token: props.token,
+                isManager: props.isManager,
+                id: props.userId,
+              },
+            });
+          }}
+        >
+          Home
+        </button>
       </div>
       <div className="center" style={{ fontSize: 50, color: "#E26A2C" }}>
         {props.Place}

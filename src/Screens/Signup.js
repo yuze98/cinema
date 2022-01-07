@@ -13,7 +13,7 @@ const Signup = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [role, setRole] = useState('customer');
+    const [role, setRole] = useState('user');
     const [validationState, setValidationState] = useState('');
     const nav = useNavigate()
     //A HANDLER FOR THE REGISTER BUTTON
@@ -34,7 +34,7 @@ const Signup = () => {
                 nav('/login')
             }
             else{
-                alert('Account created successfully not!')
+                alert('Oh no, there was a problem !')
             }
         })
     }
@@ -82,7 +82,7 @@ const Signup = () => {
                 <label style={styles.label} className='roleLabel'>Role:</label><br />
                 <select style={styles.comboBox} className='roleCombobox' value={role} onChange={(e) => setRole(e.target.value)}>
                 <option value="manager">Manager</option>
-                <option value="customer" selected>Customer</option>
+                <option value="user" selected>user</option>
                 </select><br />
                 <input type='submit' style={styles.loginAndRegisterButtons} className='registerButton' value='Register'/><br />
                 <p style={styles.alert}>{validationState}</p>
