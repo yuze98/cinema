@@ -208,7 +208,7 @@ export default function Home(props) {
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>
         {/* we'll add Condition to show this if user is manager */}
-        {isManager !== undefined && isManager === true ? <AddMovie /> : null}
+        {isManager !== undefined && isManager === true ? <AddMovie token={token}/> : null}
         {movie}
       </div>
     </div>

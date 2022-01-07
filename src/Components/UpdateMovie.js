@@ -63,19 +63,35 @@ function UpdateMovieModal(props) {
       startTime: starts[0],
       endTime: starts[1].split('PM')[0],
       date: date,
+      token:props.token,
     }).then((r) => {
-      console.log("this is the Updated movie", r);
-      if(r !==undefined)
-      {
-        alert(title+" was updated!");
-      }
-      else{
-        alert(" Failed to update! "+ title);
-      }
+        if (r !== undefined) {
+          if(r==400)
+          {
+            alert("Can't add movie since date was passed");
+
+          }
+          else if(r==401)
+          {
+            alert("Screen is busy at this slot");
+
+          }
+          else if(r==413)
+          {
+            alert("Image is too large choose sth else man!!");
+
+          }
+          else{
+            alert(title+" was updated!");
+            window.location.reload(true);
+          }
+        }else{
+          alert('Oh no, there was an error!')
+        }
     }).catch((e)=>{
       console.log(e)
       console('ERR: ',e)
-      alert('There was an error!');
+      alert('Oh no, there was an error!');
     });
     setShown(false)
   }
@@ -174,6 +190,7 @@ function ResizeImg(base64img, maxWidth, maxHeight) {
               </li>
               <input
                 type="file"
+                accept="image/png, image/jpeg"
                 onChange={async (e) => {
                   const p = await readFileDataAsBase64(e)
                   setPoster(p);

@@ -66,6 +66,7 @@ function AddMovieModal(props) {
       startTime: starts[0],
       endTime: starts[1].split("PM")[0],
       date: date,
+      token:props.token
     })
       .then((r) => {
         console.log("this is the addmoviemodal", r);
@@ -80,9 +81,14 @@ function AddMovieModal(props) {
             alert("Screen is busy at this slot");
 
           }
+          else if(r==413)
+          {
+            alert("Image is too large choose sth else man!!");
+
+          }
           else{
             alert(title + " was added successfully!");
-
+            window.location.reload(true);
           }
         }
         setShown(false);
@@ -189,6 +195,7 @@ function AddMovieModal(props) {
               </li>
               <input
                 type="file"
+                accept="image/png, image/jpeg"
                 onChange={async (e) => {
                   const p = await readFileDataAsBase64(e);
                   setPoster(await resizeImage(p));

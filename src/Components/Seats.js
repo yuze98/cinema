@@ -78,15 +78,6 @@ export default function Seats(props) {
     
 
     console.log(reserved.map((i) => Number(i)));
-    /*MovieDB.get("/movie/" + props.movid)
-                .then((response) => {
-                  console.log(response.data.data)
-                  console.log()
-                  setReserved(response.data.data.seats)
-                  
-                }).catch((e) => {
-                  console.log(e);
-                });*/ //WILL BE NEEDED IN CASE WE WANT TO CHECK FOR CONCURRENT RESERVATIONS
     MovieDB.post(
       "/reserve/" + props.movid,
       {

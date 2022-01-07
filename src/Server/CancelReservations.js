@@ -8,7 +8,7 @@ const CancelReservations = async (props)=> {
     
   }
   console.log('cancel id',props.id)
-    return await MovieDB.delete('/cancel/'+props.id).then((response) => {
+    return await MovieDB.delete('/cancel/'+props.id,config).then((response) => {
       console.log(response.data.status)
       return(response.data.status);
     }).catch((e)=>{

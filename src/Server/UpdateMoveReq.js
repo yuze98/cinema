@@ -9,14 +9,20 @@ const UpdateMovieReq = async (props) => {
     endTime: props.ends,
     date: props.date,
   };
+  let config = {
+    headers: 
+      {Authorization: 'Bearer '+props.token}
+    
+  }
   const id = props.id
-  return await MovieDB.patch("movie/",id,'/',mov)
+  return await MovieDB.patch("movie/",id,'/',mov,config)
     .then((response) => {
       console.log(response.data);
       return response.data.status;
     })
     .catch((e) => {
       console.log(e);
+      return e.response.status
     });
 };
 

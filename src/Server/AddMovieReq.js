@@ -9,8 +9,11 @@ const AddMovieReq = async (props) => {
     endTime: props.endTime,
     date: props.date,
   };
- console.log(mov)
-  return await MovieDB.post("/movie",mov)
+  let config = {
+    headers: { Authorization: "Bearer " + props.token },
+  };
+  console.log(mov);
+  return await MovieDB.post("/movie", mov, config)
     .then((response) => {
       console.log(response.data.status);
       return response.data.status;

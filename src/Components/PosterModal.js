@@ -33,7 +33,7 @@ function PosterModal(props) {
   //Delete movie
   const Delete = ()=>{
 
-    DeleteMovie({id:id}).then((s)=>{
+    DeleteMovie({id:id,token:props.token}).then((s)=>{
       console.log(s)
       alert('movie deleted')
       window.location.reload(true);
@@ -190,6 +190,7 @@ function PosterModal(props) {
           screen={Screeing_Room}
           poster={image}
           title={title}
+          token={props.token}
         />
       )}
     </div>
