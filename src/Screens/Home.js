@@ -59,8 +59,8 @@ export default function Home(props) {
             alert("You can't cancel this Reservation it's too late :(")
           }else{
             alert("Reservation canceled successfully!");
-            reser.splice(reser.indexOf(id), 1);
-            ids.splice(reser.indexOf(id), 1);
+            window.location.reload(true);
+
           }     
         } else {
           alert("Sorry there was an error :(! ");

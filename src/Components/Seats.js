@@ -101,9 +101,11 @@ export default function Seats(props) {
     )
       .then((response) => {
         console.log(response.data.data);
+        
         alert(
           "Congratulations you will have one of the best experiences in the world ^_^"
         );
+        window.location.reload(true);
       })
       .catch((e) => {
         console.log(e);

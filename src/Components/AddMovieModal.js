@@ -70,7 +70,20 @@ function AddMovieModal(props) {
       .then((r) => {
         console.log("this is the addmoviemodal", r);
         if (r !== undefined) {
-          alert(title + " was added successfully!");
+          if(r==400)
+          {
+            alert("Can't add movie since date was passed");
+
+          }
+          else if(r==401)
+          {
+            alert("Screen is busy at this slot");
+
+          }
+          else{
+            alert(title + " was added successfully!");
+
+          }
         }
         setShown(false);
       })

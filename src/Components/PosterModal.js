@@ -36,6 +36,8 @@ function PosterModal(props) {
     DeleteMovie({id:id}).then((s)=>{
       console.log(s)
       alert('movie deleted')
+      window.location.reload(true);
+
     }).catch((e)=>{
       console.log(e)
       alert('Oh no, there was a problem!')

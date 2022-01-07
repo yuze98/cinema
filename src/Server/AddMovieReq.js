@@ -17,7 +17,7 @@ const AddMovieReq = async (props) => {
     })
     .catch((e) => {
       console.log(e);
-      return;
+      return e.response.status;
     });
 };
 
