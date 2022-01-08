@@ -190,7 +190,7 @@ function ResizeImg(base64img, maxWidth, maxHeight) {
                 onChange={(event) => setTitle(event.target.value)}
               />
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
-                Poster:
+                Poster: (Compressed to 50KB)
               </li>
               <input
                 type="file"
@@ -204,11 +204,14 @@ function ResizeImg(base64img, maxWidth, maxHeight) {
               <br />
               <li style={(styles.details_title, { padding: 20, fontSize: 20 })}>
                 OR you can Add Poster's URL:
+                (For better quality)
               </li>
               <input
                 input="text"
                 onChange={(e) => {
                   setPoster(e.target.value);
+                  setpreview(e.target.value)
+
                 }}
               />
               <br />

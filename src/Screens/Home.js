@@ -55,13 +55,12 @@ export default function Home(props) {
       .then((s) => {
         console.log("cancel home: ", s);
         if (s !== undefined) {
-          if( s == 401){
-            alert("You can't cancel this Reservation it's too late :(")
-          }else{
+          if (s == 401) {
+            alert("You can't cancel this Reservation it's too late :(");
+          } else {
             alert("Reservation canceled successfully!");
             window.location.reload(true);
-
-          }     
+          }
         } else {
           alert("Sorry there was an error :(! ");
         }
@@ -73,7 +72,9 @@ export default function Home(props) {
 
   useEffect(() => {
     if (m) {
-      fetchReservations();
+      if (token !== null && !isManager) {
+        fetchReservations();
+      }
       MovieDB.get("/movie")
         .then((response) => {
           setHomeDet(response.data.data);
@@ -208,7 +209,9 @@ export default function Home(props) {
       <div style={{ backgroundColor: "black", width: "100%", height: 1 }} />
       <div style={styles.topContainer}>
         {/* we'll add Condition to show this if user is manager */}
-        {isManager !== undefined && isManager === true ? <AddMovie token={token}/> : null}
+        {isManager !== undefined && isManager === true ? (
+          <AddMovie token={token} />
+        ) : null}
         {movie}
       </div>
     </div>
