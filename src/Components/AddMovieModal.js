@@ -210,6 +210,7 @@ function AddMovieModal(props) {
                 input="text"
                 onChange={(e) => {
                   setPoster(e.target.value);
+                  setpreview(e.target.value);
                 }}
               />
 

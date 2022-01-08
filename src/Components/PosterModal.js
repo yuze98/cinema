@@ -15,6 +15,7 @@ function PosterModal(props) {
   }, [props.isShown]);
   const date =
     props.mov !== undefined ? props.mov.startTime.split("T")[0] : "null"; //"17/12/2021";
+    const dupdate = props.mov !== undefined ? new Date(props.mov.startTime):null
   const start =
     props.mov !== undefined
       ? new Date(props.mov.startTime).getHours() + ":00 PM"
@@ -23,7 +24,7 @@ function PosterModal(props) {
     props.mov !== undefined
       ? new Date(props.mov.endTime).getHours() + ":00 PM"
       : "0";
-  const Screeing_Room = props.mov !== undefined ? props.mov.room : "10";
+  const Screeing_Room = props.mov !== undefined ? props.mov.room : "0";
   const image = props.image;
   const title = props.title;
   const isManager = props.isManager;
@@ -191,6 +192,7 @@ function PosterModal(props) {
           poster={image}
           title={title}
           token={props.token}
+          dupdate={dupdate}
         />
       )}
     </div>

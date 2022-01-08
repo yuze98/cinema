@@ -6,6 +6,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "react-dropdown/style.css";
 import UpdateMovieReq from "../Server/UpdateMoveReq";
+import { string } from "sharp/lib/is";
 
 function UpdateMovieModal(props) {
   const [shown, setShown] = useState(props.isShown);
@@ -15,25 +16,23 @@ function UpdateMovieModal(props) {
   }, [props.isShown]);
   //const nav = useNavigate()
   const id = props.id
-  const [date, setDate] = useState(new Date());
-  const [starts, setStarts] = useState("12:00");
-  const [ends, setEnds] = useState("15:00");
+  const [date, setDate] = useState(props.dupdate);
+  const [starts, setStarts] = useState(props.starts.split(' PM')[0]+'-'+props.ends);
   const [screen, setScreen] = useState(props.screen);
   const [poster, setPoster] = useState(
     props.poster
   );
+
   const [title, setTitle] = useState(props.title);
   const [preview, setpreview] = useState(
-    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8af5e086459421.5d9a79cc7e3d5.jpg"
+    props.poster
   );
   const onChange = (val) => {
     setDate(val);
     console.log(val);
   };
   const StartTimes = ["12:00-15:00 PM", "15:00-18:00 PM", "18:00-21:00 PM"];
-  const defaultOptions = StartTimes[0];
   const ScreenOptions = ["1", "2"];
-  const defaultOptionsc = ScreenOptions[0];
 
   function readFileDataAsBase64(e) {
     const file = e.target.files[0];
@@ -54,14 +53,14 @@ function UpdateMovieModal(props) {
   }
   function handlesubmit(event) {
 
-    console.log('data is:', poster,title,screen,starts[0],starts[1].split('PM')[0],date)
+    console.log('data is:',id ,poster.length,title,screen,starts.split("-")[0],starts.split("-")[1].split('PM')[0],date)
      UpdateMovieReq({
       id:id,
       img: poster,
       title: title,
       room: screen,
-      startTime: starts[0],
-      endTime: starts[1].split('PM')[0],
+      startTime: starts.split("-")[0],
+      endTime: starts.split("-")[1].split('PM')[0],
       date: date,
       token:props.token,
     }).then((r) => {
@@ -79,6 +78,11 @@ function UpdateMovieModal(props) {
           else if(r==413)
           {
             alert("Image is too large choose sth else man!!");
+
+          }
+          else if(r==404)
+          {
+            alert("There was an error!");
 
           }
           else{
@@ -221,9 +225,10 @@ function ResizeImg(base64img, maxWidth, maxHeight) {
                 <br />
                 <Dropdown
                   options={StartTimes}
-                  value={defaultOptions}
+                  value={starts}
                   onChange={(e) => {
-                    setStarts(e.value.split("-"));
+                    setStarts(e.value);
+
                   }}
                   placeholder="Start Time PM:"
                 />
@@ -235,7 +240,7 @@ function ResizeImg(base64img, maxWidth, maxHeight) {
                 <br />
                 <Dropdown
                   options={ScreenOptions}
-                  value={defaultOptionsc}
+                  value={screen.toString()}
                   onChange={(e) => {
                     setScreen(e.value);
                   }}

@@ -17,7 +17,7 @@ var name= 'Sa3d el Dally'
   //A HANDLER FOR THE LOGIN BUTTON\
   const handleLogin = async (e) => {
     //TODO: BACKEND REQUEST
-    await MovieDB.post("/sign-in", { password: password, email: username })
+    await MovieDB.post("/sign-in", { password: password, username: username })
       .then((response) => {
         console.log(response.data);
         token = (response.data.token);
