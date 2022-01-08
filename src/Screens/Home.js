@@ -10,7 +10,6 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import GetReservations from "../Server/GetReservations";
 import CancelReservations from "../Server/CancelReservations";
-import Reservation from "./Reservation";
 
 export default function Home(props) {
   const [homeDet, setHomeDet] = useState(); //returns the Movie Details array
